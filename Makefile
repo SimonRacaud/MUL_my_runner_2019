@@ -9,12 +9,12 @@ BUILD_DIR	= ./build
 SRC_DIR 	= ./src
 OBJ_DIR 	= ./obj
 
-SRC	=	$(SRC_DIR)/main.c				\
-		$(SRC_DIR)/event_manager.c		\
-		$(SRC_DIR)/object.c				\
-		$(SRC_DIR)/create_window.c		\
-		$(SRC_DIR)/display_window.c		\
-		$(SRC_DIR)/parallax.c
+SRC	=	main.c				\
+		event_manager.c		\
+		object.c			\
+		create_window.c		\
+		display_window.c	\
+		parallax.c
 
 OBJ	=	$(SRC:.c=.o)
 

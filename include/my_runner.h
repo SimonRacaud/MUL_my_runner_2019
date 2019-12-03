@@ -19,6 +19,7 @@
 #define CHAR_SIZE 0
 #define W_WIDTH 800
 #define W_HEIGHT 600
+static const int framerate_g = 60;
 
 typedef struct object {
     enum {OTHER, IMAGE, DUCK} type;
@@ -43,7 +44,6 @@ typedef struct window {
     int height;
     sfClock *timer;
     sfFont *font;
-    sfColor color;
     object_t *duck;
     parallax_t parallax;
 } window_t;

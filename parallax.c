@@ -50,7 +50,7 @@ static void move_parallax_layer(object_t **layer, window_t *w)
     layer[1]->pos.x += layer[0]->speed.x;
     if (layer[1]->pos.x > w->width) {
         layer[0]->pos.x = 0 - w->width;
-        layer[1]->pos.x;
+        layer[1]->pos.x = 0;
     }
 }
 
