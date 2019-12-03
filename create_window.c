@@ -12,12 +12,13 @@ window_t *create_window(void)
     window_t *w = malloc(sizeof(window_t));
     sfVideoMode mode = {W_WIDTH, W_HEIGHT, 32};
 
-    w->window = sfRenderWindow_create(mode, "my runner", sfClose, NULL);
+    w->window = sfRenderWindow_create(mode, "my runner", sfClose | sfFullscreen, NULL);
     sfRenderWindow_setFramerateLimit(w->window, framerate_g);
     w->timer = sfClock_create();
+    w->width = mode.width;
+    w->height = mode.height;
     char *setting[2] = {"asset/setting01.png", "asset/setting02.png"};
     create_parallax("asset/background.png", "asset/clouds.png", setting, w);
-
     sfVector2f pos_duck = {200, 200};
     sfVector2i size_duck = {110, 110};
     w->duck = create_object("duck_spritesheet.png", &pos_duck, &size_duck, 3);

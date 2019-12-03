@@ -12,9 +12,11 @@ OBJ_DIR 	= ./obj
 SRC	=	main.c				\
 		event_manager.c		\
 		object.c			\
+		object_config.c		\
 		create_window.c		\
 		display_window.c	\
-		parallax.c
+		parallax.c			\
+		parallax_config.c
 
 OBJ	=	$(SRC:.c=.o)
 

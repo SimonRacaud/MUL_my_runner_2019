@@ -23,21 +23,17 @@ sfVector2i *size, int nb_frame)
     object->nb_frame = nb_frame;
     object->type = OTHER;
     object->speed = (sfVector2f){0.0f, 0.0f};
+    object->pos = *pos;
     sfSprite_setTexture(object->sprite, object->texture, sfFalse);
     sfSprite_setTextureRect(object->sprite, object->rect);
     sfSprite_setPosition(object->sprite, *pos);
     return object;
 }
 
-void object_set_speed(object_t *object, float speedx, float speedy)
-{
-    object->speed.x = speedx;
-    object->speed.y = speedy;
-}
-
 void display_object(object_t *object, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, object->sprite, NULL);
+    sfSprite_setPosition(object->sprite, object->pos);
 }
 
 void destroy_object(object_t *object)
