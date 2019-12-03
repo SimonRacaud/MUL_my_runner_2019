@@ -17,8 +17,8 @@
 
 #define PATH_FONT ""
 #define CHAR_SIZE 0
-#define W_WIDTH 800
-#define W_HEIGHT 600
+#define W_WIDTH 1280
+#define W_HEIGHT 720
 static const int framerate_g = 60;
 
 typedef struct object {
@@ -60,10 +60,12 @@ void destroy_object(object_t *object);
 void update_frame_object(object_t *object);
 void move_object(object_t *object_t, float x, float y);
 void object_set_speed(object_t *object, float speedx, float speedy);
+void display_object(object_t *object, sfRenderWindow *window);
 
-void move_parallax(float max_speed, window_t *w);
 void create_parallax(char *path_bg, char *path_cloud,
 char *path_sett[2], window_t *w);
 void destroy_parallax(parallax_t *parallax);
+void move_parallax(float max_speed, window_t *w);
+void display_parallax(parallax_t *parallax, sfRenderWindow *window);
 
 #endif

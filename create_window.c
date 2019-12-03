@@ -15,6 +15,8 @@ window_t *create_window(void)
     w->window = sfRenderWindow_create(mode, "my runner", sfClose, NULL);
     sfRenderWindow_setFramerateLimit(w->window, framerate_g);
     w->timer = sfClock_create();
+    char *setting[2] = {"asset/setting01.png", "asset/setting02.png"};
+    create_parallax("asset/background.png", "asset/clouds.png", setting, w);
 
     sfVector2f pos_duck = {200, 200};
     sfVector2i size_duck = {110, 110};
@@ -32,6 +34,7 @@ void destroy_window(window_t *w)
     sfRenderWindow_destroy(w->window);
     sfClock_destroy(w->timer);
     destroy_object(w->duck);
+    destroy_parallax(&w->parallax);
     //sfFont_destroy(w->font);
     free(w);
 }

@@ -15,6 +15,7 @@ int display(window_t *w)
         update_frame_object(w->duck);
         sfClock_restart(w->timer);
     }
+    display_parallax(&w->parallax, w->window);
     w->duck->pos.x++;
     w->duck->pos.y++;
     sfSprite_setPosition(w->duck->sprite, w->duck->pos);

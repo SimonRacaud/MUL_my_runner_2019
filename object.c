@@ -35,6 +35,11 @@ void object_set_speed(object_t *object, float speedx, float speedy)
     object->speed.y = speedy;
 }
 
+void display_object(object_t *object, sfRenderWindow *window)
+{
+    sfRenderWindow_drawSprite(window, object->sprite, NULL);
+}
+
 void destroy_object(object_t *object)
 {
     sfSprite_destroy(object->sprite);

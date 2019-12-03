@@ -54,6 +54,18 @@ static void move_parallax_layer(object_t **layer, window_t *w)
     }
 }
 
+void display_parallax(parallax_t *parallax, sfRenderWindow *window)
+{
+    display_object(parallax->background[0], window);
+    display_object(parallax->background[1], window);
+    display_object(parallax->cloud[0], window);
+    display_object(parallax->cloud[1], window);
+    display_object(parallax->sett01[0], window);
+    display_object(parallax->sett01[1], window);
+    display_object(parallax->sett02[0], window);
+    display_object(parallax->sett02[1], window);
+}
+
 void move_parallax(float max_speed, window_t *w)
 {
     move_parallax_layer(w->parallax.background, w);
