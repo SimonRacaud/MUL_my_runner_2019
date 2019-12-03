@@ -5,9 +5,9 @@
 ## Project makefile
 ##
 
-BUILD_DIR	= build
-SRC_DIR 	= src
-OBJ_DIR 	= obj
+BUILD_DIR	= ./build
+SRC_DIR 	= ./src
+OBJ_DIR 	= ./obj
 
 SRC	=	$(SRC_DIR)/main.c				\
 		$(SRC_DIR)/event_manager.c		\
@@ -16,7 +16,7 @@ SRC	=	$(SRC_DIR)/main.c				\
 		$(SRC_DIR)/display_window.c		\
 		$(SRC_DIR)/parallax.c
 
-OBJ	=	$(SRC:.c=$(OBJ_DIR)/%.o)
+OBJ	=	$(SRC:.c=.o)
 
 NAME	=	my_runner
 
