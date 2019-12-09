@@ -20,7 +20,19 @@ static void window_destroy(window_t *w)
 
 static window_t *window_display(window_t *w)
 {
-
+    sfRenderWindow_clear(w->window, sfBlack);
+    if (sfClock_getElapsedTime(w->clock).microseconds > 100000) {
+        //update_frame_object(w->duck);
+        sfClock_restart(w->clock);
+    }
+    //move_parallax(w);
+    //display_parallax(&w->parallax, w->window);
+    //w->duck->pos.x++;
+    //w->duck->pos.y++;
+    //display_object(w->duck, w->window);
+    //
+    sfRenderWindow_display(w->window);
+    return 0;
 }
 
 window_t *window_create(void)

@@ -5,17 +5,19 @@
 ## Project makefile
 ##
 
+SRC_DIR 	= ./src/
 BUILD_DIR	= ./build
-SRC_DIR 	= ./src
 OBJ_DIR 	= ./obj
 
-SRC	=	main.c				\
-		event_manager.c		\
-		object.c			\
-		object_config.c		\
-		display_window.c	\
-		parallax.c			\
-		parallax_config.c
+SRC	=	$(SRC_DIR)main.c				\
+		$(SRC_DIR)event_manager.c		\
+		$(SRC_DIR)game.c				\
+		$(SRC_DIR)window.c				\
+		$(SRC_DIR)map.c					\
+		$(SRC_DIR)object.c				\
+		$(SRC_DIR)object_config.c		\
+		$(SRC_DIR)parallax.c			\
+		$(SRC_DIR)parallax_config.c
 
 OBJ	=	$(SRC:.c=.o)
 
