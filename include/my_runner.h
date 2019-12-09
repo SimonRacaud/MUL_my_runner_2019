@@ -14,59 +14,33 @@
 #include <SFML/Window.h>
 #include <math.h>
 #include "my.h"
+#include "event_manager.h"
+#include "window.h"
+#include "map.h"
+#include "game.h"
+#include "object.h"
+#include "parallax.h"
 
-#define PATH_FONT ""
-#define CHAR_SIZE 0
-#define W_WIDTH 1920
-#define W_HEIGHT 1080
-static const int framerate_g = 60;
+static const int CHAR_SIZE = 0;
+static const int W_WIDTH = 1920;
+static const int W_HEIGHT = 1080;
+static const int W_BPP = 32;
+static const int FRAMERATE = 60;
+static const int PARALLAX_SPEED = 3;
+static const char *PATH_FONT = "";
+static const char *TITLE_WINDOW = "My Runner";
 
-typedef struct object {
-    enum {OTHER, IMAGE, DUCK} type;
-    sfIntRect rect;
-    int nb_frame;
-    sfTexture *texture;
-    sfSprite *sprite;
-    sfVector2f pos;
-    sfVector2f speed;
-} object_t;
+static const char *PATH_DUCK = "duck_spritesheet.png";
 
-typedef struct parallax {
-    object_t *background[2];
-    object_t *cloud[2];
-    object_t *sett01[2];
-    object_t *sett02[2];
-} parallax_t;
+void event_manager_create(event_manager_t *evt_manager);
 
-typedef struct window {
-    sfRenderWindow *window;
-    int width;
-    int height;
-    sfClock *timer;
-    sfFont *font;
-    object_t *duck;
-    parallax_t parallax;
-} window_t;
+game_t *game_create(game_t *game, char *pathmap, char *pathfont);
 
-void analyse_events(window_t *w, sfEvent *event);
+window_t *window_create(void);
 
-window_t *create_window(void);
-void destroy_window(window_t *w);
-int display(window_t *w);
-
-object_t *create_object(char *spritesheet_path, sfVector2f *pos,
+object_t *object_create(char *spritesheet_path, sfVector2f *pos,
 sfVector2i *size, int nb_frame);
-void destroy_object(object_t *object);
-void update_frame_object(object_t *object);
-void move_object(object_t *object_t, float x, float y);
-void object_set_speed(object_t *object, float speedx, float speedy);
-void display_object(object_t *object, sfRenderWindow *window);
 
-void create_parallax(char *path_bg, char *path_cloud,
-char *path_sett[2], window_t *w);
-void destroy_parallax(parallax_t *parallax);
-void move_parallax(window_t *w);
-void display_parallax(parallax_t *parallax, sfRenderWindow *window);
-void parallax_set_speed(parallax_t *para, float max_speed);
+void parallax_create(parallax_t *parallax, int width, int height);
 
 #endif
