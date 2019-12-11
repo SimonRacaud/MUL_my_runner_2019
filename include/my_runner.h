@@ -14,33 +14,30 @@
 #include <SFML/Window.h>
 #include <math.h>
 #include "my.h"
-#include "event_manager.h"
+
+typedef struct window window_t;
+
 #include "window.h"
+#include "event_manager.h"
 #include "map.h"
 #include "game.h"
 #include "object.h"
 #include "parallax.h"
 
-static const int CHAR_SIZE = 0;
-static const int W_WIDTH = 1920;
-static const int W_HEIGHT = 1080;
-static const int W_BPP = 32;
-static const int FRAMERATE = 60;
-static const int PARALLAX_SPEED = 3;
-static const char *PATH_FONT = "";
-static const char *TITLE_WINDOW = "My Runner";
+#define EXIT_ERROR 84
 
-static const char *PATH_DUCK = "duck_spritesheet.png";
+//static const char *PATH_DUCK = "duck_spritesheet.png";
 
+int run(char *path_map);
+
+window_t *window_create(window_t *w, char *path_map);
 void event_manager_create(event_manager_t *evt_manager);
-
-game_t *game_create(game_t *game, char *pathmap, char *pathfont);
-
-window_t *window_create(void);
-
+game_t *game_create(window_t *w, char *pathmap);
+int create_elements(game_t *game);
+int destroy_element(game_t *game);
 object_t *object_create(char *spritesheet_path, sfVector2f *pos,
 sfVector2i *size, int nb_frame);
-
 void parallax_create(parallax_t *parallax, int width, int height);
+map_t *map_create(window_t *w);
 
 #endif

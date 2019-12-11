@@ -8,45 +8,41 @@
 #include "my_runner.h"
 #include "window.h"
 
+extern const int W_WIDTH;
+extern const int W_HEIGHT;
+extern const int W_BPP;
+extern const int FRAMERATE;
+extern const char *TITLE_WINDOW;
+
 static void window_destroy(window_t *w)
 {
     sfRenderWindow_destroy(w->window);
-    sfClock_destroy(w->timer);
-    w->game.destroy(w->game);
-    w->evt.destroy(w->evt);
-    //destroy_parallax(&w->parallax);
-    free(w);
+    w->game.destroy(&w->game);
 }
 
 static window_t *window_display(window_t *w)
 {
     sfRenderWindow_clear(w->window, sfBlack);
-    if (sfClock_getElapsedTime(w->clock).microseconds > 100000) {
-        //update_frame_object(w->duck);
-        sfClock_restart(w->clock);
-    }
-    //move_parallax(w);
-    //display_parallax(&w->parallax, w->window);
-    //w->duck->pos.x++;
-    //w->duck->pos.y++;
-    //display_object(w->duck, w->window);
-    //
+    w->game.display(w);
     sfRenderWindow_display(w->window);
-    return 0;
+    return w;
 }
 
-window_t *window_create(void)
+window_t *window_create(window_t *w, char *path_map)
 {
-    window_t *w = malloc(sizeof(window_t));
     sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
 
     w->destroy = window_destroy;
     w->display = window_display;
     w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
     sfFullscreen, NULL);
+    if (!w->window)
+        return NULL;
     sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);
     w->width = mode.width;
     w->height = mode.height;
-    if (!w->window)
+    if (!game_create(w, path_map))
         return NULL;
+    event_manager_create(&w->evt);
+    return w;
 }

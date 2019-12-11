@@ -22,11 +22,11 @@ enum object_type {
 };
 
 typedef struct object {
-    void (*destroy)(object_t *object);
-    object_t *(*display)(object_t *object, sfRenderWindow *window);
-    object_t *(*update_sprite)(object_t *object);
-    object_t *(*move)(object_t *object);
-    object_t *(*set_speed)(object_t *object, doube x, double y);
+    void (*destroy)(struct object *object);
+    struct object *(*display)(struct object *object, sfRenderWindow *window);
+    struct object *(*update_sprite)(struct object *object);
+    struct object *(*move)(struct object *object);
+    struct object *(*set_speed)(struct object *object, double x, double y);
     enum object_type type;
     sfIntRect rect;
     int nb_frame;
@@ -36,7 +36,7 @@ typedef struct object {
     sfVector2f speed;
 } object_t;
 
-void object_set_speed(object_t *object, float speedx, float speedy);
-void object_move(object_t *object, float x, float y);
+object_t *object_set_speed(object_t *object, double speedx, double speedy);
+object_t *object_move(object_t *object);
 
 #endif

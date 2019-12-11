@@ -11,17 +11,13 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include <SFML/Window.h>
-
-static const char *PATH_SETT01 = "asset/setting01.png";
-static const char *PATH_SETT02 = "asset/setting02.png";
-static const char *PATH_CLOUD = "asset/clouds.png";
-static const char *PATH_BG = "asset/background.png";
+#include "object.h"
 
 typedef struct parallax {
-    void (*destroy)(parallax_t *paral);
-    parallax_t *(*display)(parallax_t *paral, sfRenderWindow *window);
-    parallax_t *(*set_speed)(parallax_t *paral, float max_speed);
-    parallax_t *(*move)(parallax_t *paral);
+    void (*destroy)(struct parallax *paral);
+    struct parallax *(*display)(struct parallax *, sfRenderWindow *);
+    struct parallax *(*set_speed)(struct parallax *paral, float max_speed);
+    struct parallax *(*move)(struct parallax *paral);
     object_t *background[2];
     object_t *cloud[2];
     object_t *sett01[2];
@@ -29,6 +25,6 @@ typedef struct parallax {
     sfVector2i size;
 } parallax_t;
 
-void parallax_move(window_t *w);
+parallax_t *parallax_move(parallax_t *paral);
 
 #endif

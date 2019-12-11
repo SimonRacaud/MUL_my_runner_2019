@@ -7,10 +7,11 @@
 
 #include "my_runner.h"
 
-static void object_display(object_t *object, sfRenderWindow *window)
+static object_t *object_display(object_t *object, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, object->sprite, NULL);
     sfSprite_setPosition(object->sprite, object->pos);
+    return object;
 }
 
 static void object_destroy(object_t *object)
@@ -20,24 +21,25 @@ static void object_destroy(object_t *object)
     free(object);
 }
 
-static void object_update_spite(object_t *object)
+static object_t *object_update_spite(object_t *object)
 {
     object->rect.left += object->rect.width;
     if (object->rect.left == object->rect.width * object->nb_frame)
         object->rect.left = 0;
     sfSprite_setTextureRect(object->sprite, object->rect);
+    return object;
 }
 
 static void object_init(object_t *obj, int nb_frame)
 {
     obj->destroy = &object_destroy;
     obj->display = &object_display;
-    obj->update_sprite = &object_update_sprite;
+    obj->update_sprite = &object_update_spite;
     obj->move = &object_move;
     obj->set_speed = &object_set_speed;
-    object->type = DEFAULT;
-    object->speed = (sfVector2f){0.0f, 0.0f};
-    object->nb_frame = nb_frame;
+    obj->type = DEFAULT;
+    obj->speed = (sfVector2f){0.0f, 0.0f};
+    obj->nb_frame = nb_frame;
 }
 
 object_t *object_create(char *spritesheet_path, sfVector2f *pos,

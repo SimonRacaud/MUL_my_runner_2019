@@ -13,15 +13,17 @@
 #include <SFML/Window.h>
 
 #include "map.h"
-#include "player.h"
+//#include "player.h"
+#include "object.h"
+#include "window.h"
 
 typedef struct game {
-    void (*destroy)(game_t *game);
-    game_t *(*display)(game_t *game);
+    void (*destroy)(struct game *game);
+    struct game *(*display)(window_t *w);
     sfClock *clock;
     sfFont *font;
     map_t map;
-    player_t player;
+    //player_t player;
     object_t *duck;
 } game_t;
 

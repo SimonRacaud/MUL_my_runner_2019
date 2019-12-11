@@ -8,33 +8,42 @@
 #include "my_runner.h"
 #include "parallax.h"
 
-static void parallax_set_speed(parallax_t *para, float max_speed)
+extern const char *PATH_SETT01;
+extern const char *PATH_SETT02;
+extern const char *PATH_CLOUD;
+extern const char *PATH_BG;
+extern const float PARALLAX_SPEED;
+
+static parallax_t *parallax_set_speed(parallax_t *para, float max_speed)
 {
     for (int i = 0; i < 2; i++) {
-        para->background[i].set_speed(para->background[i], max_speed / 6, 0);
-        para->cloud[i].set_speed(para->background[i], max_speed / 3, 0);
-        para->sett01[i].set_speed(para->background[i], max_speed / 2, 0);
-        para->sett02[i].set_speed(para->background[i], max_speed, 0);
+        para->background[i]->set_speed(para->background[i], max_speed / 6, 0);
+        para->cloud[i]->set_speed(para->background[i], max_speed / 3, 0);
+        para->sett01[i]->set_speed(para->background[i], max_speed / 2, 0);
+        para->sett02[i]->set_speed(para->background[i], max_speed, 0);
     }
+    return para;
 }
 
-static void parallax_display(parallax_t *parallax, sfRenderWindow *window)
+static parallax_t *parallax_display(parallax_t *parallax,
+sfRenderWindow *window)
 {
     for (int i = 0; i < 2; i++) {
-        parallax->background[i].display(parallax->background[i], window);
-        parallax->cloud[i].display(parallax->cloud[i], window);
-        parallax->sett01[i].display(parallax->sett01[i], window);
-        parallax->sett02[i].display(parallax->sett02[i], window);
+        parallax->background[i]->display(parallax->background[i], window);
+        parallax->cloud[i]->display(parallax->cloud[i], window);
+        parallax->sett01[i]->display(parallax->sett01[i], window);
+        parallax->sett02[i]->display(parallax->sett02[i], window);
     }
+    return parallax;
 }
 
 static void parallax_destroy(parallax_t *parallax)
 {
     for (int i = 0; i < 2; i++) {
-        parallax->background[i].destroy(parallax->background[i]);
-        parallax->cloud[i].destroy(parallax->cloud[i]);
-        parallax->sett01[i].destroy(parallax->sett01[i]);
-        parallax->sett02[i].destroy(parallax->sett02[i]);
+        parallax->background[i]->destroy(parallax->background[i]);
+        parallax->cloud[i]->destroy(parallax->cloud[i]);
+        parallax->sett01[i]->destroy(parallax->sett01[i]);
+        parallax->sett02[i]->destroy(parallax->sett02[i]);
     }
 }
 
@@ -53,7 +62,7 @@ void parallax_create(parallax_t *parallax, int width, int height)
     pa->sett01[1] = object_create(PATH_SETT01, &pos_right, &pa->size, 1);
     pa->sett02[0] = object_create(PATH_SETT02, &pos_left, &pa->size, 1);
     pa->sett02[1] = object_create(PATH_SETT02, &pos_right, &pa->size, 1);
-    parallax_set_speed(&parallax, PARALLAX_SPEED);
+    parallax_set_speed(parallax, PARALLAX_SPEED);
     parallax->destroy = &parallax_destroy;
     parallax->display = &parallax_display;
     parallax->set_speed = &parallax_set_speed;

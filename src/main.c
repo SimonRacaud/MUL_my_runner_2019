@@ -7,18 +7,19 @@
 
 #include "my_runner.h"
 
-int main(void)
+int usage(int status)
 {
-    sfEvent event;
-    window_t *w = create_window();
+    my_putstr("Finite runner created with CSFML.\n\n");
+    my_putstr("USAGE\n\t./my_runner map.txt\n\nOPTIONS\n");
+    my_putstr("\t-i\tlaunch the game in infinity mode.\n");
+    my_putstr("\t-h\tprint the usage and quit.\n");
+    my_putstr("USER INTERACTIONS\n\tSPACE_KEY\tjump.\n");
+    return status;
+}
 
-    if (!w)
-        return -1;
-    while (sfRenderWindow_isOpen(w->window)) {
-        while (sfRenderWindow_pollEvent(w->window, &event))
-            analyse_events(w, &event);
-        display(w);
-    }
-    destroy_window(w);
-    return 0;
+int main(int argc, char **argv)
+{
+    if (argc == 2 && my_strcmp(argv[1], "-h"))
+        return run(argv[1]);
+    return usage(EXIT_SUCCESS);
 }

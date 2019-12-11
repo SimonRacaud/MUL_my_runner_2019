@@ -8,25 +8,34 @@
 #include "my_runner.h"
 #include "map.h"
 
+extern const int BLOCK_SIZE;
+extern const int NB_TYPE_BLOCK;
+extern const char *PATH_BLOCK01;
+
 static void map_destroy(map_t *map)
 {
-    map->parallax.destroy(map->parallax);
-    for (int i = 0; i < map->nb_type_block; i++) {
-        map->type_block[i].destroy(map->type_block[i]);
+    map->parallax.destroy(&map->parallax);
+    /*for (int i = 0; i < map->nb_type_block; i++) {
+        map->type_block[i]->destroy(map->type_block[i]);
     }
     free(map->type_block);
     for (int i = 0; i < map->width; i++)
         free(map->map[i]);
-    free(map->buffer);
+    free(map->buffer);*/
 }
 
-static map_t *map_display(map_t *w)
+static map_t *map_display(window_t *w)
 {
-
+    w->game.map.parallax.move(&w->game.map.parallax);
+    w->game.map.parallax.display(&w->game.map.parallax, w->window);
+    return (&w->game.map);
 }
 
-map_t *map_create(map_t *map)
+map_t *map_create(window_t *w)
 {
-    map->destroy = map_destroy;
-    map->display = map_display;
+    w->game.map.destroy = map_destroy;
+    w->game.map.display = map_display;
+    w->game.map.block_size = BLOCK_SIZE;
+    parallax_create(&w->game.map.parallax, w->width, w->height);
+    return (&w->game.map);
 }

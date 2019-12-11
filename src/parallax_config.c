@@ -18,10 +18,11 @@ static void move_parallax_layer(object_t **layer, parallax_t *paral)
     }
 }
 
-void parallax_move(parallax_t *paral)
+parallax_t *parallax_move(parallax_t *paral)
 {
     move_parallax_layer(paral->background, paral);
-    move_parallax_layer(paral->cloud, paral;
+    move_parallax_layer(paral->cloud, paral);
     move_parallax_layer(paral->sett01, paral);
     move_parallax_layer(paral->sett02, paral);
+    return paral;
 }

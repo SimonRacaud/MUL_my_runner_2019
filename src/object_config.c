@@ -7,15 +7,17 @@
 
 #include "my_runner.h"
 
-void object_set_speed(object_t *object, float speedx, float speedy)
+object_t *object_set_speed(object_t *object, double speedx, double speedy)
 {
     object->speed.x = speedx;
     object->speed.y = speedy;
+    return object;
 }
 
-void object_move(object_t *object, float x, float y)
+object_t *object_move(object_t *object)
 {
-    object->pos.x += x;
-    object->pos.y += y;
+    object->pos.x += object->speed.x;
+    object->pos.y += object->speed.y;
     sfSprite_setPosition(object->sprite, object->pos);
+    return object;
 }

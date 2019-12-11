@@ -16,8 +16,8 @@
 #include "event_manager.h"
 
 typedef struct window {
-    void (*destroy)(game_t *game);
-    game_t *(*display)(game_t *game);
+    void (*destroy)(struct window *w);
+    struct window *(*display)(struct window *w);
     sfRenderWindow *window;
     int width;
     int height;

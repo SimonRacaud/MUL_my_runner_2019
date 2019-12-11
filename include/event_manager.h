@@ -12,6 +12,8 @@
 #include <SFML/Audio.h>
 #include <SFML/Window.h>
 
+#include "window.h"
+
 typedef struct event_manager {
     void (*exec)(window_t *w, sfEvent *event);
     void (*mouse_click)(window_t *w, sfEvent *event);

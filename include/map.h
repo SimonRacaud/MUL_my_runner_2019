@@ -16,8 +16,8 @@
 #include "object.h"
 
 typedef struct map {
-    void (*destroy)(map_t *map);
-    map_t *(*display)(map_t *map);
+    void (*destroy)(struct map *map);
+    struct map *(*display)(window_t *w);
     char *buffer;
     char file_name;
     int width;

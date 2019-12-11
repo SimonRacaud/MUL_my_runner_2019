@@ -10,8 +10,11 @@ BUILD_DIR	= ./build
 OBJ_DIR 	= ./obj
 
 SRC	=	$(SRC_DIR)main.c				\
+		$(SRC_DIR)constants.c			\
+		$(SRC_DIR)run.c					\
 		$(SRC_DIR)event_manager.c		\
 		$(SRC_DIR)game.c				\
+		$(SRC_DIR)game_create_destroy_elements.c \
 		$(SRC_DIR)window.c				\
 		$(SRC_DIR)map.c					\
 		$(SRC_DIR)object.c				\
