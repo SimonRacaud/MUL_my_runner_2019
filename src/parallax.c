@@ -12,28 +12,19 @@ extern const char *PATH_SETT01;
 extern const char *PATH_SETT02;
 extern const char *PATH_CLOUD;
 extern const char *PATH_BG;
-extern const float PARALLAX_SPEED;
-
-static parallax_t *parallax_set_speed(parallax_t *para, float max_speed)
-{
-    for (int i = 0; i < 2; i++) {
-        para->background[i]->set_speed(para->background[i], max_speed / 6, 0);
-        para->cloud[i]->set_speed(para->background[i], max_speed / 3, 0);
-        para->sett01[i]->set_speed(para->background[i], max_speed / 2, 0);
-        para->sett02[i]->set_speed(para->background[i], max_speed, 0);
-    }
-    return para;
-}
+extern const double PARALLAX_SPEED;
 
 static parallax_t *parallax_display(parallax_t *parallax,
 sfRenderWindow *window)
 {
-    for (int i = 0; i < 2; i++) {
-        parallax->background[i]->display(parallax->background[i], window);
-        parallax->cloud[i]->display(parallax->cloud[i], window);
-        parallax->sett01[i]->display(parallax->sett01[i], window);
-        parallax->sett02[i]->display(parallax->sett02[i], window);
-    }
+    parallax->background[0]->display(parallax->background[0], window);
+    parallax->background[1]->display(parallax->background[1], window);
+    parallax->cloud[0]->display(parallax->cloud[0], window);
+    parallax->cloud[1]->display(parallax->cloud[1], window);
+    parallax->sett01[0]->display(parallax->sett01[0], window);
+    parallax->sett01[1]->display(parallax->sett01[1], window);
+    parallax->sett02[0]->display(parallax->sett02[0], window);
+    parallax->sett02[1]->display(parallax->sett02[1], window);
     return parallax;
 }
 

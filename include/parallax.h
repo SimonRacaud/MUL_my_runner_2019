@@ -26,5 +26,6 @@ typedef struct parallax {
 } parallax_t;
 
 parallax_t *parallax_move(parallax_t *paral);
+parallax_t *parallax_set_speed(parallax_t *para, double max_speed);
 
 #endif

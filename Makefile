@@ -20,7 +20,7 @@ SRC	=	$(SRC_DIR)main.c				\
 		$(SRC_DIR)object.c				\
 		$(SRC_DIR)object_config.c		\
 		$(SRC_DIR)parallax.c			\
-		$(SRC_DIR)parallax_config.c
+		$(SRC_DIR)parallax_update.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -32,6 +32,7 @@ all:	$(NAME)
 
 $(NAME):	LIB $(OBJ)
 	gcc -o $(NAME) $(OBJ) -L./lib -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
+	make clean
 
 LIB:
 	make -C ./lib/my
