@@ -37,7 +37,7 @@ int create_elements(game_t *game);
 int destroy_element(game_t *game);
 object_t *object_create(char *spritesheet_path, sfVector2f *pos,
 sfVector2i *size, int nb_frame);
-void parallax_create(parallax_t *parallax, int width, int height);
+void parallax_create(window_t *w, int width, int height);
 map_t *map_create(window_t *w);
 
 #endif

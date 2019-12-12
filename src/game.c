@@ -9,6 +9,7 @@
 #include "game.h"
 
 extern const char *PATH_FONT;
+extern const double SPEEDX;
 
 static void game_destroy(game_t *game)
 {
@@ -20,13 +21,10 @@ static void game_destroy(game_t *game)
 
 static game_t *game_display(window_t *w)
 {
-    if (sfClock_getElapsedTime(w->game.clock).microseconds > 100000) {
+    //if (sfClock_getElapsedTime(w->game.clock).microseconds > 100000) {
         //update_frame_object(w->duck);
-        sfClock_restart(w->game.clock);
-    }
     w->game.map.display(w);
-    //move_parallax(w);
-    //display_parallax(&w->parallax, w->window);
+    sfClock_restart(w->game.clock);
     //w->duck->pos.x++;
     //w->duck->pos.y++;
     //display_object(w->duck, w->window);
@@ -40,6 +38,7 @@ game_t *game_create(window_t *w, char *pathmap)
     w->game.display = &game_display;
     w->game.clock = sfClock_create();
     w->game.font = sfFont_createFromFile(PATH_FONT);
+    w->game.speedx = SPEEDX;
     if (!map_create(w))
         return NULL;
     if (!w->game.font) {

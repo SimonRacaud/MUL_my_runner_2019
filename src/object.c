@@ -10,7 +10,6 @@
 static object_t *object_display(object_t *object, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, object->sprite, NULL);
-    sfSprite_setPosition(object->sprite, object->pos);
     return object;
 }
 
@@ -21,12 +20,20 @@ static void object_destroy(object_t *object)
     free(object);
 }
 
-static object_t *object_update_spite(object_t *object)
+static object_t *object_update_spite(object_t *object, sfClock *clock)
 {
-    object->rect.left += object->rect.width;
-    if (object->rect.left == object->rect.width * object->nb_frame)
-        object->rect.left = 0;
-    sfSprite_setTextureRect(object->sprite, object->rect);
+    int nb_frame = 0;
+
+    if (object->frame_per_ms == 0)
+        return object;
+    object->timer_frame += sfClock_getElapsedTime(clock).microseconds;
+    if (object->timer_frame >= (object->frame_per_ms * 1000)) {
+        nb_frame = object->timer_frame / (object->frame_per_ms * 1000);
+        object->timer_frame -= (nb_frame * (object->frame_per_ms * 1000));
+        for (int i = 0; i < nb_frame; i++)
+            object_set_next_frame(object);
+        sfSprite_setTextureRect(object->sprite, object->rect);
+    }
     return object;
 }
 
@@ -37,9 +44,15 @@ static void object_init(object_t *obj, int nb_frame)
     obj->update_sprite = &object_update_spite;
     obj->move = &object_move;
     obj->set_speed = &object_set_speed;
+    obj->set_fps = &object_set_fps;
+    obj->set_mps = &object_set_mps;
     obj->type = DEFAULT;
     obj->speed = (sfVector2f){0.0f, 0.0f};
     obj->nb_frame = nb_frame;
+    obj->timer_frame = 0;
+    obj->timer_position = 0;
+    obj->frame_per_ms = 0;
+    obj->mov_per_ms = 0;
 }
 
 object_t *object_create(char *spritesheet_path, sfVector2f *pos,

@@ -34,6 +34,7 @@ SRC	=	my_compute_power_rec.c	\
 		my_strncat.c		\
 		my_strncmp.c		\
 		my_strncpy.c		\
+		my_strdup.c		\
 		my_strstr.c		\
 		my_strupcase.c		\
 		my_swap.c		\

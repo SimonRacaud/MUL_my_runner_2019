@@ -6,12 +6,13 @@
 */
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
+const double SPEEDX = 3.0f;
 
 const char *PATH_SETT01 = "asset/setting01.png";
 const char *PATH_SETT02 = "asset/setting02.png";
 const char *PATH_CLOUD = "asset/clouds.png";
 const char *PATH_BG = "asset/background.png";
-const double PARALLAX_SPEED = 3.0f;
+const double PARALLAX_MPS = 1;
 
 const int BLOCK_SIZE = 40;
 const int NB_TYPE_BLOCK = 1;
