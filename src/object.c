@@ -7,8 +7,13 @@
 
 #include "my_runner.h"
 
-static object_t *object_display(object_t *object, sfRenderWindow *window)
+static object_t *object_display(object_t *object, sfRenderWindow *window,
+sfClock *clock)
 {
+    if (object->nb_frame != 0)
+        object->update_sprite(object, clock);
+    if (object->speed.x != 0 || object->speed.y != 0)
+        object->move(object, clock);
     sfRenderWindow_drawSprite(window, object->sprite, NULL);
     return object;
 }
@@ -55,19 +60,19 @@ static void object_init(object_t *obj, int nb_frame)
     obj->mov_per_ms = 0;
 }
 
-object_t *object_create(char *spritesheet_path, sfVector2f *pos,
+object_t *object_create(const char *spritesheet_path, sfVector2f *pos,
 sfVector2i *size, int nb_frame)
 {
     object_t *object = malloc(sizeof(object_t));
 
     if (!object) {
-        my_putstr_error("Error: create_duck\n");
+        my_putstr_error("Error: create object\n");
         return NULL;
     }
     object->texture = sfTexture_createFromFile(spritesheet_path, NULL);
     object->sprite = sfSprite_create();
     if (!object->texture || !object->sprite) {
-        my_putstr_error("Error: create_duck\n");
+        my_putstr_error("Error: create object\n");
         free(object);
         return NULL;
     }

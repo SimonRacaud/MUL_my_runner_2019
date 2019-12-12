@@ -24,11 +24,12 @@ static game_t *game_display(window_t *w)
     //if (sfClock_getElapsedTime(w->game.clock).microseconds > 100000) {
         //update_frame_object(w->duck);
     w->game.map.display(w);
-    sfClock_restart(w->game.clock);
+    w->game.duck->display(w->game.duck, w->window, w->game.clock);
     //w->duck->pos.x++;
     //w->duck->pos.y++;
     //display_object(w->duck, w->window);
     //
+    sfClock_restart(w->game.clock);
     return (&w->game);
 }
 

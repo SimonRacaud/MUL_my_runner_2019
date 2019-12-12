@@ -23,7 +23,7 @@ enum object_type {
 
 typedef struct object {
     void (*destroy)(struct object *object);
-    struct object *(*display)(struct object *object, sfRenderWindow *window);
+    struct object *(*display)(struct object *, sfRenderWindow *, sfClock *);
     struct object *(*update_sprite)(struct object *object, sfClock *clock);
     struct object *(*move)(struct object *object, sfClock *clock);
     struct object *(*set_speed)(struct object *object, double x, double y);

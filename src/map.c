@@ -26,8 +26,9 @@ static void map_destroy(map_t *map)
 
 static map_t *map_display(window_t *w)
 {
-    w->game.map.parallax.move(&w->game.map.parallax, w->game.clock);
-    w->game.map.parallax.display(&w->game.map.parallax, w->window);
+    w->game.map.parallax.display(&w->game.map.parallax, w->window,
+    w->game.clock);
+    w->game.map.parallax.move(&w->game.map.parallax);
     return (&w->game.map);
 }
 

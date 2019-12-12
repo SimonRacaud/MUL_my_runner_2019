@@ -45,7 +45,7 @@ object_t *object_set_fps(object_t *object, double frame_per_ms)
 
 object_t *object_set_mps(object_t *object, double movement_per_ms)
 {
-    object->frame_per_ms = movement_per_ms;
+    object->mov_per_ms = movement_per_ms;
     return object;
 }
 

@@ -15,16 +15,16 @@ extern const char *PATH_BG;
 extern const double PARALLAX_MPS;
 
 static parallax_t *parallax_display(parallax_t *parallax,
-sfRenderWindow *window)
+sfRenderWindow *window, sfClock *clock)
 {
-    parallax->background[0]->display(parallax->background[0], window);
-    parallax->background[1]->display(parallax->background[1], window);
-    parallax->cloud[0]->display(parallax->cloud[0], window);
-    parallax->cloud[1]->display(parallax->cloud[1], window);
-    parallax->sett01[0]->display(parallax->sett01[0], window);
-    parallax->sett01[1]->display(parallax->sett01[1], window);
-    parallax->sett02[0]->display(parallax->sett02[0], window);
-    parallax->sett02[1]->display(parallax->sett02[1], window);
+    parallax->background[0]->display(parallax->background[0], window, clock);
+    parallax->background[1]->display(parallax->background[1], window, clock);
+    parallax->cloud[0]->display(parallax->cloud[0], window, clock);
+    parallax->cloud[1]->display(parallax->cloud[1], window, clock);
+    parallax->sett01[0]->display(parallax->sett01[0], window, clock);
+    parallax->sett01[1]->display(parallax->sett01[1], window, clock);
+    parallax->sett02[0]->display(parallax->sett02[0], window, clock);
+    parallax->sett02[1]->display(parallax->sett02[1], window, clock);
     return parallax;
 }
 
