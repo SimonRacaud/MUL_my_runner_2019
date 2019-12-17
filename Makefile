@@ -20,6 +20,7 @@ SRC	=	$(SRC_DIR)main.c				\
 		$(SRC_DIR)object_config.c		\
 		$(SRC_DIR)object_management.c	\
 		$(SRC_DIR)map.c					\
+		$(SRC_DIR)map_display.c			\
 		$(SRC_DIR)file_map.c			\
 		$(SRC_DIR)file_map_check_map.c	\
 		$(SRC_DIR)file_map_create_object_matrix.c \

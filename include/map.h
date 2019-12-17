@@ -29,10 +29,14 @@ typedef struct map {
     int width;
     int height;
     int block_size;
+    int nb_disp_cols;
+    int nb_disp_rows;
     object_t **type_block;
     object_t ***map;
     parallax_t parallax;
 } map_t;
+
+int map_show_map(window_t *w);
 
 int map_load_from_file(map_t *map);
 

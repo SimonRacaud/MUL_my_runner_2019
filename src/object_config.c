@@ -11,6 +11,7 @@ object_t *object_set_frame(object_t *object, int idx_frame)
 {
     if (idx_frame < object->nb_frame && idx_frame >= 0) {
         object->rect.left = idx_frame * object->rect.width;
+        sfSprite_setTextureRect(object->sprite, object->rect);
     } else {
         my_putstr_error("WARNING: object_set_frame: invalid idx of frame\n");
     }

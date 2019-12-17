@@ -9,6 +9,7 @@ const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
 const double SPEEDX = 3.0f;
+const double FPMS = 1;
 
 const char *PATH_SETT01 = "asset/sprite/setting01.png";
 const char *PATH_SETT02 = "asset/sprite/setting02.png";

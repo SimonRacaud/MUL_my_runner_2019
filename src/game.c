@@ -10,6 +10,7 @@
 
 extern const char *PATH_FONT;
 extern const double SPEEDX;
+extern const double FPMS;
 
 static void game_destroy(game_t *game)
 {
@@ -21,14 +22,13 @@ static void game_destroy(game_t *game)
 
 static game_t *game_display(window_t *w)
 {
-    //if (sfClock_getElapsedTime(w->game.clock).microseconds > 100000) {
-        //update_frame_object(w->duck);
-    w->game.map.display(w);
-    w->game.duck->display(w->game.duck, w->window, w->game.clock);
-    //w->duck->pos.x++;
-    //w->duck->pos.y++;
-    //display_object(w->duck, w->window);
-    //
+    w->game.timer += sfClock_getElapsedTime(w->game.clock).microseconds;
+    if ((w->game.timer * 1000) >= w->game.fpms) {
+        w->game.timer -= (w->game.fpms * 1000);
+        w->game.posx += w->game.speedx;
+        w->game.map.display(w);
+        w->game.duck->display(w->game.duck, w->window, w->game.clock);
+    }
     sfClock_restart(w->game.clock);
     return (&w->game);
 }
@@ -40,6 +40,9 @@ game_t *game_create(window_t *w, char *pathmap)
     w->game.clock = sfClock_create();
     w->game.font = sfFont_createFromFile(PATH_FONT);
     w->game.speedx = SPEEDX;
+    w->game.posx = 0;
+    w->game.fpms = FPMS;
+    w->game.timer = 0;
     if (!map_create(w, pathmap))
         return NULL;
     if (!w->game.font) {
