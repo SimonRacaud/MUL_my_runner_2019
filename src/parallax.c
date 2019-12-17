@@ -53,8 +53,8 @@ static void parallax_init_path(parallax_t *para)
 void parallax_create(window_t *w, int width, int height)
 {
     parallax_t *pa = &w->game.map.parallax;
-    sfVector2f pos_left = {-width, 0};
-    sfVector2f pos_right = {0, 0};
+    sfVector2f pos_left = {0, 0};
+    sfVector2f pos_right = {width, 0};
 
     parallax_init_path(pa);
     w->game.map.parallax.size = (sfVector2i){width, height};
@@ -66,7 +66,7 @@ void parallax_create(window_t *w, int width, int height)
     pa->sett01[1] = object_create(pa->path_sett01, &pos_right, &pa->size, 1);
     pa->sett02[0] = object_create(pa->path_sett02, &pos_left, &pa->size, 1);
     pa->sett02[1] = object_create(pa->path_sett02, &pos_right, &pa->size, 1);
-    parallax_set_speed_mps(pa, w->game.speedx, PARALLAX_MPS);
+    parallax_set_speed_mps(pa, -w->game.speedx, PARALLAX_MPS);
     w->game.map.parallax.destroy = &parallax_destroy;
     w->game.map.parallax.display = &parallax_display;
     w->game.map.parallax.set_speed_mps = &parallax_set_speed_mps;

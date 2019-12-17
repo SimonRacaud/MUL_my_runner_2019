@@ -10,10 +10,10 @@
 
 static void move_parallax_layer(object_t **layer, parallax_t *paral)
 {
-    layer[1]->pos.x = layer[0]->pos.x + paral->size.x;
-    if (layer[1]->pos.x > paral->size.x) {
-        layer[0]->pos.x = (0 - paral->size.x);
-        layer[1]->pos.x = 0;
+    layer[1]->pos.x = layer[0]->pos.x + paral->size.x - 2;
+    if (layer[0]->pos.x <= (-paral->size.x)) {
+        layer[0]->pos.x = 0;
+        layer[1]->pos.x = (0 + paral->size.x);
         sfSprite_setPosition(layer[0]->sprite, layer[0]->pos);
     }
     sfSprite_setPosition(layer[1]->sprite, layer[1]->pos);
