@@ -8,7 +8,7 @@
 #include "my_runner.h"
 
 extern const char MAP_BLOCK_CHAR[];
-extern const int NB_TYPE_BLOCK;
+extern const int NB_TYPE_CHAR;
 
 static int display_invalid_char(char *str)
 {
@@ -42,7 +42,7 @@ int check_map_buffer(map_t *map)
             idx_block = 0;
             idx_buffer++;
             current_height++;
-        } else if (idx_block == NB_TYPE_BLOCK - 1) {
+        } else if (idx_block == NB_TYPE_CHAR - 1) {
             return display_invalid_char(&map->buffer[idx_buffer]);
         } else
             idx_block++;

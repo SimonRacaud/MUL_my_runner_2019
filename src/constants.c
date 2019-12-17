@@ -17,12 +17,12 @@ const char *PATH_BG = "asset/sprite/background.png";
 const double PARALLAX_MPS = 30;
 
 const int BLOCK_SIZE = 40;
-const int NB_TYPE_BLOCK = 10;
+const int NB_TYPE_CHAR = 10;
+const int NB_TYPE_BLOCK = 8;
 const char *PATH_BLOCK_TEXTR = "asset/sprite/block_basic.png";
 const int BLOCK_TEXTR_SIZE = 100;
 const char MAP_BLOCK_CHAR[] =
 {
-    '\n',
     '#',
     '=',
     '|',
@@ -31,7 +31,8 @@ const char MAP_BLOCK_CHAR[] =
     '*',
     '@',
     'P',
-    'E'
+    'E',
+    '\n'
 };
 
 const int CHAR_SIZE = 0;

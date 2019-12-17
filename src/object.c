@@ -49,6 +49,7 @@ static void object_init(object_t *obj, int nb_frame)
     obj->update_sprite = &object_update_spite;
     obj->move = &object_move;
     obj->set_speed = &object_set_speed;
+    obj->set_frame = &object_set_frame;
     obj->set_fps = &object_set_fps;
     obj->set_mps = &object_set_mps;
     obj->type = DEFAULT;

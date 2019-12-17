@@ -35,6 +35,9 @@ typedef struct map {
 } map_t;
 
 int map_load_from_file(map_t *map);
+
 int check_map_buffer(map_t *map);
+int load_type_block(map_t *map);
+int load_map_from_buffer(map_t *map);
 
 #endif

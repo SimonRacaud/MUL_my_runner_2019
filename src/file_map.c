@@ -7,6 +7,8 @@
 
 #include "my_runner.h"
 
+extern const int NB_TYPE_BLOCK;
+
 static int load_file(map_t *map)
 {
     int fd = open(map->file_name, O_RDONLY);

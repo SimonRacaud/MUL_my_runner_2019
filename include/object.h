@@ -26,6 +26,7 @@ typedef struct object {
     struct object *(*display)(struct object *, sfRenderWindow *, sfClock *);
     struct object *(*update_sprite)(struct object *object, sfClock *clock);
     struct object *(*move)(struct object *object, sfClock *clock);
+    struct object *(*set_frame)(struct object *object, int idx_frame);
     struct object *(*set_speed)(struct object *object, double x, double y);
     struct object *(*set_fps)(struct object *object, double frame_per_ms);
     struct object *(*set_mps)(struct object *object, double movement_per_ms);
@@ -42,8 +43,10 @@ typedef struct object {
     double timer_position;
 } object_t;
 
-object_t *object_set_speed(object_t *object, double speedx, double speedy);
 object_t *object_move(object_t *object, sfClock *clock);
+
+object_t *object_set_frame(object_t *object, int idx_frame);
+object_t *object_set_speed(object_t *object, double speedx, double speedy);
 object_t *object_set_next_frame(object_t *object);
 object_t *object_set_fps(object_t *object, double frame_per_ms);
 object_t *object_set_mps(object_t *object, double movement_per_ms);
