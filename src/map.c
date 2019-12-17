@@ -17,12 +17,13 @@ static void map_destroy(map_t *map)
     if (map->buffer != NULL) {
         free(map->buffer);
     }
-    /*for (int i = 0; i < NB_TYPE_BLOCK; i++) {
+    for (int i = 0; i < NB_TYPE_BLOCK; i++) {
         map->type_block[i]->destroy(map->type_block[i]);
     }
     free(map->type_block);
-    for (int i = 0; i < map->width; i++)
-        free(map->map[i]);*/
+    for (int x = 0; x < map->width; x++)
+        free(map->map[x]);
+    free(map->map);
 }
 
 static map_t *map_display(window_t *w)

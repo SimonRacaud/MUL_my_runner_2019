@@ -37,6 +37,8 @@ int check_map_buffer(map_t *map)
     while (map->buffer[idx_buffer] != '\0') {
         if (map->buffer[idx_buffer] == '\n') {
             update_height_width(map, &current_height);
+            idx_buffer++;
+            continue;
         }
         if (map->buffer[idx_buffer] == MAP_BLOCK_CHAR[idx_block]) {
             idx_block = 0;
