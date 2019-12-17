@@ -40,7 +40,7 @@ game_t *game_create(window_t *w, char *pathmap)
     w->game.clock = sfClock_create();
     w->game.font = sfFont_createFromFile(PATH_FONT);
     w->game.speedx = SPEEDX;
-    if (!map_create(w))
+    if (!map_create(w, pathmap))
         return NULL;
     if (!w->game.font) {
         my_putstr_error("ERROR: load font\n");

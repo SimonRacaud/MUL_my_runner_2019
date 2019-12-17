@@ -16,9 +16,12 @@ SRC	=	$(SRC_DIR)main.c				\
 		$(SRC_DIR)game.c				\
 		$(SRC_DIR)game_create_destroy_elements.c \
 		$(SRC_DIR)window.c				\
-		$(SRC_DIR)map.c					\
 		$(SRC_DIR)object.c				\
 		$(SRC_DIR)object_config.c		\
+		$(SRC_DIR)map.c					\
+		$(SRC_DIR)file_map.c			\
+		$(SRC_DIR)file_map_check_map.c	\
+		$(SRC_DIR)file_map_create_object_matrix.c \
 		$(SRC_DIR)parallax.c			\
 		$(SRC_DIR)parallax_update.c
 

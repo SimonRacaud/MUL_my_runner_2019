@@ -1,12 +1,14 @@
 /*
 ** EPITECH PROJECT, 2019
-** csfml_2019
+** my_runner_2019
 ** File description:
 ** header
 */
 
 #ifndef H_RUNNER
 #define H_RUNNER
+
+#include <stdio.h>
 
 #include <stdlib.h>
 #include <SFML/Graphics.h>
@@ -36,6 +38,6 @@ int destroy_element(game_t *game);
 object_t *object_create(const char *spritesheet_path, sfVector2f *pos,
 sfVector2i *size, int nb_frame);
 void parallax_create(window_t *w, int width, int height);
-map_t *map_create(window_t *w);
+map_t *map_create(window_t *w, char *file_name);
 
 #endif
