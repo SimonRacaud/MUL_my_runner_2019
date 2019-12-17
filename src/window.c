@@ -22,7 +22,6 @@ static void window_destroy(window_t *w)
 
 static window_t *window_display(window_t *w)
 {
-    sfRenderWindow_clear(w->window, sfBlack);
     w->game.display(w);
     sfRenderWindow_display(w->window);
     return w;

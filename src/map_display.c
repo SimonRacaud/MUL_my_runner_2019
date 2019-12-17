@@ -24,7 +24,7 @@ int map_show_map(window_t *w)
     int start_cols = (w->game.posx / w->game.map.block_size);
     sfVector2f pos = {0, w->height - w->game.map.block_size};
 
-    pos.x = 0 - (w->game.posx - (start_cols * w->game.map.block_size));
+    pos.x = ((start_cols * w->game.map.block_size) - w->game.posx);
     for (int x = start_cols; x < start_cols + w->game.map.nb_disp_cols; x++) {
         if (x >= w->game.map.width)
             break;

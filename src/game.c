@@ -22,14 +22,15 @@ static void game_destroy(game_t *game)
 
 static game_t *game_display(window_t *w)
 {
-    w->game.timer += sfClock_getElapsedTime(w->game.clock).microseconds;
-    if (w->game.timer >= w->game.fpms) {
-        w->game.timer -= w->game.fpms;
-        w->game.posx += w->game.speedx;
-        w->game.map.display(w);
-        w->game.duck->display(w->game.duck, w->window, w->game.clock);
-    }
+    w->game.timer += sfTime_asSeconds(sfClock_getElapsedTime(w->game.clock));
     sfClock_restart(w->game.clock);
+    //while (w->game.timer >= w->game.fpms) {
+    //    w->game.timer -= w->game.fpms;
+    //}
+    w->game.posx = w->game.speedx * w->game.timer;
+    sfRenderWindow_clear(w->window, sfBlack);
+    w->game.map.display(w);
+    w->game.duck->display(w->game.duck, w->window, w->game.clock);
     return (&w->game);
 }
 

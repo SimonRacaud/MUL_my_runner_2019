@@ -28,7 +28,7 @@ typedef struct game {
     double speedx;
     double posx;
     sfInt64 fpms;
-    sfInt64 timer;
+    double timer;
 } game_t;
 
 #endif

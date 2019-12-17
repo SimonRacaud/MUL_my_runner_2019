@@ -8,14 +8,14 @@
 const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
-const double SPEEDX = 3.0f;
-const double FPMS = 3000;
+const double SPEEDX = 200.0f;
+const double FPMS = 33333;
 
 const char *PATH_SETT01 = "asset/sprite/setting01.png";
 const char *PATH_SETT02 = "asset/sprite/setting02.png";
 const char *PATH_CLOUD = "asset/sprite/clouds.png";
 const char *PATH_BG = "asset/sprite/background.png";
-const double PARALLAX_MPS = 30;
+const double PARALLAX_MPS = 60;
 
 const int BLOCK_SIZE = 40;
 const int NB_TYPE_CHAR = 10;
@@ -41,5 +41,5 @@ const int CHAR_SIZE = 0;
 const int W_WIDTH = 1920;
 const int W_HEIGHT = 1080;
 const int W_BPP = 32;
-const int FRAMERATE = 60;
+const int FRAMERATE = 30;
 const char *TITLE_WINDOW = "My Runner 2019 - RACAUD Simon";
