@@ -23,8 +23,8 @@ static void game_destroy(game_t *game)
 static game_t *game_display(window_t *w)
 {
     w->game.timer += sfClock_getElapsedTime(w->game.clock).microseconds;
-    if ((w->game.timer * 1000) >= w->game.fpms) {
-        w->game.timer -= (w->game.fpms * 1000);
+    if (w->game.timer >= w->game.fpms) {
+        w->game.timer -= w->game.fpms;
         w->game.posx += w->game.speedx;
         w->game.map.display(w);
         w->game.duck->display(w->game.duck, w->window, w->game.clock);
