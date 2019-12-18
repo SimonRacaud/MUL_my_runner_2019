@@ -33,8 +33,8 @@ window_t *window_create(window_t *w, char *path_map)
 
     w->destroy = window_destroy;
     w->display = window_display;
-    w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
-    sfFullscreen, NULL);
+    w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose/* |
+    sfFullscreen*/ | sfResize, NULL);
     if (!w->window)
         return NULL;
     sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);

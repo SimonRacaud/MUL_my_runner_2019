@@ -10,8 +10,8 @@ const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
 const double SPEEDX = 200.0f;
 
-const char *PATH_SETT01 = "asset/sprite/setting01.png";
-const char *PATH_SETT02 = "asset/sprite/setting02.png";
+const char *PATH_SETT_BG = "asset/sprite/setting01.png";
+const char *PATH_SETT_FG = "asset/sprite/setting02.png";
 const char *PATH_CLOUD = "asset/sprite/clouds.png";
 const char *PATH_BG = "asset/sprite/background.png";
 
