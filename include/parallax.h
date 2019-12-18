@@ -14,6 +14,7 @@
 #include "object.h"
 
 #define DISPLAY(obj, window, clock) obj->display(obj, window, clock)
+#define SCALE(object, size) object->rescale(object, size)
 
 typedef struct parallax {
     void (*destroy)(struct parallax *paral);
@@ -34,5 +35,6 @@ typedef struct parallax {
 
 parallax_t *parallax_move(parallax_t *parallax);
 parallax_t *parallax_set_speed(parallax_t *para, double max_speed);
+parallax_t *parallax_scale(parallax_t *parallax, window_t *w);
 
 #endif

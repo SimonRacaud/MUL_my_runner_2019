@@ -27,14 +27,35 @@ static window_t *window_display(window_t *w)
     return w;
 }
 
+void invert_fullscreen_state(window_t *w)
+{
+    sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
+
+    sfRenderWindow_destroy(w->window);
+    w->is_fullscreen = !w->is_fullscreen;
+    if (w->is_fullscreen) {
+        w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
+        sfFullscreen | sfResize, NULL);
+    } else {
+        w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
+        sfResize, NULL);
+    }
+    if (!w->window)
+        w->evt.close(w);
+    else
+        sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);
+}
+
 window_t *window_create(window_t *w, char *path_map)
 {
     sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
 
     w->destroy = window_destroy;
     w->display = window_display;
-    w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose/* |
-    sfFullscreen*/ | sfResize, NULL);
+    w->is_reload = 0;
+    w->is_fullscreen = 1;
+    w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
+    sfFullscreen | sfResize, NULL);
     if (!w->window)
         return NULL;
     sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);

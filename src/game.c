@@ -21,7 +21,7 @@ static void game_destroy(game_t *game)
 
 static game_t *game_display(window_t *w)
 {
-    double timer = sfTime_asSeconds(sfClock_getElapsedTime(w->game.clock));
+    float timer = sfTime_asSeconds(sfClock_getElapsedTime(w->game.clock));
 
     sfRenderWindow_clear(w->window, sfBlack);
     w->game.posx = w->game.speedx * timer;

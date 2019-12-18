@@ -7,6 +7,15 @@
 
 #include "my_runner.h"
 
+object_t *object_rescale(object_t *object, sfVector2f *new_size)
+{
+    sfVector2f scale;
+
+    scale.x = (float)new_size->x / object->rect.width;
+    scale.y = (float)new_size->y / object->rect.height;
+    sfSprite_setScale(object->sprite, scale);
+}
+
 object_t *object_set_frame(object_t *object, int idx_frame)
 {
     if (idx_frame < object->nb_frame && idx_frame >= 0) {

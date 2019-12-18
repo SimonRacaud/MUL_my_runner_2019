@@ -21,6 +21,8 @@ typedef struct window {
     sfRenderWindow *window;
     int width;
     int height;
+    int is_fullscreen;
+    int is_reload;
     game_t game;
     event_manager_t evt;
 } window_t;

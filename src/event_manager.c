@@ -24,8 +24,9 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
 {
     if (event->key.code == sfKeyEscape)
         close_window(w);
-    else if (event->key.code == sfKeySpace)
+    else if (event->key.code == sfKeySpace) {
         my_putstr("KEY SPACE\n");
+    }
     if (event->key.code == sfKeyLeft)
         my_putstr("Key LEFT\n");
     else if (event->key.code == sfKeyRight)
@@ -34,6 +35,8 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
         my_putstr("Key UP\n");
     else if (event->key.code == sfKeyDown)
         my_putstr("Key DOWN\n");
+    if (event->key.code == sfKeyF)
+        reload_render_window(w, event);
 }
 
 static void analyse_events(window_t *w, sfEvent *event)
@@ -44,6 +47,8 @@ static void analyse_events(window_t *w, sfEvent *event)
         manage_mouse_click(w, event);
     if (event->type == sfEvtKeyReleased)
         manage_keyrelease(w, event);
+    if (event->type == sfEvtResized)
+        resize_window(w, event);
 }
 
 void event_manager_create(event_manager_t *evt_manager)
@@ -51,5 +56,6 @@ void event_manager_create(event_manager_t *evt_manager)
     evt_manager->exec = &analyse_events;
     evt_manager->mouse_click = &manage_mouse_click;
     evt_manager->key_release = &manage_keyrelease;
+    evt_manager->resize = &resize_window;
     evt_manager->close = &close_window;
 }

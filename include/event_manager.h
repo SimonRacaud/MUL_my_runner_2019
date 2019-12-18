@@ -19,7 +19,11 @@ typedef struct event_manager {
     void (*mouse_click)(window_t *w, sfEvent *event);
     void (*mouse_move)(window_t *w, sfEvent *event);
     void (*key_release)(window_t *w, sfEvent *event);
+    void (*resize)(window_t *w, sfEvent *event);
     void (*close)(window_t *w);
 } event_manager_t;
+
+void resize_window(window_t *w, sfEvent *event);
+void reload_render_window(window_t *w, sfEvent *event);
 
 #endif

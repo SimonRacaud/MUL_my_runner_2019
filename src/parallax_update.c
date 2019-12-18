@@ -35,3 +35,18 @@ parallax_t *parallax_set_speed(parallax_t *para, double max_speed)
     para->sett_fg[0]->set_speed(para->sett_fg[0], max_speed, 0);
     return para;
 }
+
+parallax_t *parallax_scale(parallax_t *parallax, window_t *w)
+{
+    sfVector2f size = {w->width, w->height};
+
+    for (int i = 0; i < 2; i++) {
+        SCALE(parallax->background[i], &size);
+        SCALE(parallax->cloud[i], &size);
+        SCALE(parallax->sett_bg[i], &size);
+        SCALE(parallax->sett_fg[i], &size);
+    }
+    w->game.map.parallax.size.x = w->width;
+    w->game.map.parallax.size.y = w->height;
+    return parallax;
+}

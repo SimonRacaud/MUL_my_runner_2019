@@ -12,6 +12,8 @@ extern const char *PATH_SETT_BG;
 extern const char *PATH_SETT_FG;
 extern const char *PATH_CLOUD;
 extern const char *PATH_BG;
+extern const int PARALLAX_T_SX;
+extern const int PARALLAX_T_SY;
 
 static parallax_t *parallax_display(parallax_t *parallax,
 sfRenderWindow *window)
@@ -63,7 +65,7 @@ void parallax_create(window_t *w, int width, int height)
     sfVector2f pos_right = {width, 0};
 
     parallax_init_path(pa);
-    w->game.map.parallax.size = (sfVector2i){width, height};
+    w->game.map.parallax.size = (sfVector2i){PARALLAX_T_SX, PARALLAX_T_SY};
     pa->background[0] = object_create(pa->path_bg, &pos_left, &pa->size, 1);
     pa->background[1] = object_create(pa->path_bg, &pos_right, &pa->size, 1);
     pa->cloud[0] = object_create(pa->path_cloud, &pos_left, &pa->size, 1);
@@ -73,6 +75,7 @@ void parallax_create(window_t *w, int width, int height)
     pa->sett_fg[0] = object_create(pa->path_settf, &pos_left, &pa->size, 1);
     pa->sett_fg[1] = object_create(pa->path_settf, &pos_right, &pa->size, 1);
     parallax_set_speed(pa, -w->game.speedx);
+    parallax_scale(pa, w);
     w->game.map.parallax.destroy = &parallax_destroy;
     w->game.map.parallax.display = &parallax_display;
     w->game.map.parallax.set_speed = &parallax_set_speed;

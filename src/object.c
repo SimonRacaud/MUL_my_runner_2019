@@ -10,7 +10,7 @@
 static object_t *object_display(object_t *object, sfRenderWindow *window,
 sfClock *clock)
 {
-    if (object->nb_frame > 1 && object->clock != NULL)
+    if (object->nb_frame > 1)
         object->update_sprite(object);
     if (object->speed.x != 0 || object->speed.y != 0)
         object->move(object, clock);
@@ -45,12 +45,16 @@ static object_t *object_update_spite(object_t *object)
     return object;
 }
 
-static void object_init(object_t *obj, int nb_frame)
+static void object_init(object_t *obj, int nb_frame, sfVector2f *position,
+sfVector2i *size)
 {
+    obj->rect = (sfIntRect){0, 0, size->x, size->y};
+    obj->pos = *position;
     obj->destroy = &object_destroy;
     obj->display = &object_display;
     obj->update_sprite = &object_update_spite;
     obj->move = &object_move;
+    obj->rescale = &object_rescale;
     obj->set_speed = &object_set_speed;
     obj->set_frame = &object_set_frame;
     obj->set_fps = &object_set_fps;
@@ -78,9 +82,7 @@ sfVector2i *size, int nb_frame)
         free(object);
         return NULL;
     }
-    object->rect = (sfIntRect){0, 0, size->x, size->y};
-    object->pos = *pos;
-    object_init(object, nb_frame);
+    object_init(object, nb_frame, pos, size);
     sfSprite_setTexture(object->sprite, object->texture, sfFalse);
     sfSprite_setTextureRect(object->sprite, object->rect);
     sfSprite_setPosition(object->sprite, *pos);

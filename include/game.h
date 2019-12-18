@@ -25,7 +25,7 @@ typedef struct game {
     map_t map;
     //player_t player;
     object_t *duck;
-    double speedx;
+    float speedx;
     double posx;
 } game_t;
 
