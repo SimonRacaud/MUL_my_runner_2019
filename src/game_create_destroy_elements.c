@@ -16,9 +16,8 @@ int create_elements(game_t *game)
     &(sfVector2i){110, 110}, 3);
     if (game->duck == NULL)
         return EXIT_ERROR;
-    game->duck->set_speed(game->duck, 1, 1);
-    game->duck->set_fps(game->duck, 80);
-    game->duck->set_mps(game->duck, 10);
+    game->duck->set_speed(game->duck, 10, 10);
+    game->duck->set_fps(game->duck, 10);
     return EXIT_SUCCESS;
 }
 

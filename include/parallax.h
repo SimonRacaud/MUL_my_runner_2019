@@ -16,7 +16,7 @@
 typedef struct parallax {
     void (*destroy)(struct parallax *paral);
     struct parallax *(*display)(struct parallax *, sfRenderWindow *, sfClock *);
-    struct parallax *(*set_speed_mps)(struct parallax *, double, double);
+    struct parallax *(*set_speed)(struct parallax *, double);
     struct parallax *(*move)(struct parallax *paral);
     object_t *background[2];
     object_t *cloud[2];
@@ -30,7 +30,6 @@ typedef struct parallax {
 } parallax_t;
 
 parallax_t *parallax_move(parallax_t *parallax);
-parallax_t *parallax_set_speed_mps(parallax_t *para, double max_speed,
-double mps);
+parallax_t *parallax_set_speed(parallax_t *para, double max_speed);
 
 #endif

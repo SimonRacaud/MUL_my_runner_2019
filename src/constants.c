@@ -9,13 +9,11 @@ const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
 const double SPEEDX = 200.0f;
-const double FPMS = 33333;
 
 const char *PATH_SETT01 = "asset/sprite/setting01.png";
 const char *PATH_SETT02 = "asset/sprite/setting02.png";
 const char *PATH_CLOUD = "asset/sprite/clouds.png";
 const char *PATH_BG = "asset/sprite/background.png";
-const double PARALLAX_MPS = 60;
 
 const int BLOCK_SIZE = 40;
 const int NB_TYPE_CHAR = 10;

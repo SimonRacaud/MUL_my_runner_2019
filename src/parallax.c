@@ -12,7 +12,6 @@ extern const char *PATH_SETT01;
 extern const char *PATH_SETT02;
 extern const char *PATH_CLOUD;
 extern const char *PATH_BG;
-extern const double PARALLAX_MPS;
 
 static parallax_t *parallax_display(parallax_t *parallax,
 sfRenderWindow *window, sfClock *clock)
@@ -66,9 +65,9 @@ void parallax_create(window_t *w, int width, int height)
     pa->sett01[1] = object_create(pa->path_sett01, &pos_right, &pa->size, 1);
     pa->sett02[0] = object_create(pa->path_sett02, &pos_left, &pa->size, 1);
     pa->sett02[1] = object_create(pa->path_sett02, &pos_right, &pa->size, 1);
-    parallax_set_speed_mps(pa, -w->game.speedx, PARALLAX_MPS);
+    parallax_set_speed(pa, -w->game.speedx);
     w->game.map.parallax.destroy = &parallax_destroy;
     w->game.map.parallax.display = &parallax_display;
-    w->game.map.parallax.set_speed_mps = &parallax_set_speed_mps;
+    w->game.map.parallax.set_speed = &parallax_set_speed;
     w->game.map.parallax.move = &parallax_move;
 }
