@@ -20,14 +20,14 @@ sfRenderWindow *window)
 {
     sfClock **clock = parallax->clock;
 
-    DISPLAY(parallax->background[0], window, clock[3]);
-    DISPLAY(parallax->background[1], window, clock[3]);
-    DISPLAY(parallax->cloud[0], window, clock[2]);
-    DISPLAY(parallax->cloud[1], window, clock[2]);
-    DISPLAY(parallax->sett_bg[0], window, clock[1]);
-    DISPLAY(parallax->sett_bg[1], window, clock[1]);
-    DISPLAY(parallax->sett_fg[0], window, clock[0]);
-    DISPLAY(parallax->sett_fg[1], window, clock[0]);
+    PARALLAX_DISPLAY(parallax->background[0], window, clock[3]);
+    PARALLAX_DISPLAY(parallax->background[1], window, clock[3]);
+    PARALLAX_DISPLAY(parallax->cloud[0], window, clock[2]);
+    PARALLAX_DISPLAY(parallax->cloud[1], window, clock[2]);
+    PARALLAX_DISPLAY(parallax->sett_bg[0], window, clock[1]);
+    PARALLAX_DISPLAY(parallax->sett_bg[1], window, clock[1]);
+    PARALLAX_DISPLAY(parallax->sett_fg[0], window, clock[0]);
+    PARALLAX_DISPLAY(parallax->sett_fg[1], window, clock[0]);
     parallax->move(parallax);
     return parallax;
 }
@@ -58,7 +58,7 @@ static void parallax_init_path(parallax_t *para)
         para->clock[i] = sfClock_create();
 }
 
-void parallax_create(window_t *w, int width, int height)
+void parallax_create(window_t *w, int width)
 {
     parallax_t *pa = &w->game.map.parallax;
     sfVector2f pos_left = {0, 0};

@@ -16,6 +16,7 @@ static void game_destroy(game_t *game)
     sfClock_destroy(game->clock);
     sfFont_destroy(game->font);
     game->map.destroy(&game->map);
+    game->player.destroy(&game->player);
     destroy_element(game);
 }
 
@@ -27,6 +28,7 @@ static game_t *game_display(window_t *w)
     w->game.posx = w->game.speedx * timer;
     w->game.map.display(w);
     w->game.duck->display(w->game.duck, w->window, w->game.clock);
+    w->game.player.display(w);
     return (&w->game);
 }
 
@@ -44,7 +46,7 @@ game_t *game_create(window_t *w, char *pathmap)
         my_putstr_error("ERROR: load font\n");
         return NULL;
     }
-    if (create_elements(&w->game))
+    if (create_elements(&w->game) || !player_create(w))
         return NULL;
     return (&w->game);
 }

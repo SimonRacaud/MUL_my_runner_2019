@@ -14,6 +14,7 @@ object_t *object_rescale(object_t *object, sfVector2f *new_size)
     scale.x = (float)new_size->x / object->rect.width;
     scale.y = (float)new_size->y / object->rect.height;
     sfSprite_setScale(object->sprite, scale);
+    return object;
 }
 
 object_t *object_set_frame(object_t *object, int idx_frame)

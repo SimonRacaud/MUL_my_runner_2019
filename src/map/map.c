@@ -39,6 +39,7 @@ map_t *map_reload(window_t *w)
 
     map_destroy(&w->game.map);
     map_create(w, file_name);
+    return (&w->game.map);
 }
 
 map_t *map_create(window_t *w, char *file_name)
@@ -58,6 +59,6 @@ map_t *map_create(window_t *w, char *file_name)
         w->game.map.nb_disp_cols = w->game.map.width;
     if (w->game.map.height < w->game.map.nb_disp_rows)
         w->game.map.nb_disp_rows = w->game.map.height;
-    parallax_create(w, w->width, w->height);
+    parallax_create(w, w->width);
     return (&w->game.map);
 }

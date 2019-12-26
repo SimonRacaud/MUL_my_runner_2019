@@ -5,6 +5,8 @@
 ** contants
 */
 
+#include <SFML/Graphics.h>
+
 const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
@@ -31,10 +33,16 @@ const char MAP_BLOCK_CHAR[] =
     '.',
     '*',
     '@',
-    'P',
     'E',
     '\n'
 };
+
+const char *PATH_PLAYER_SSHEET = "asset/sprite/player.png";
+const sfVector2i PLAYER_SPRITE_SIZE = (sfVector2i){200, 400};
+const float PLAYER_POSX = 300.0f;
+const double PLAYER_FPMS = 100;
+const int PLAYER_HEIGHT = BLOCK_SIZE * 2;
+const int ID_EMPTY_BLOCK = 3;
 
 const int CHAR_SIZE = 0;
 

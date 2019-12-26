@@ -13,7 +13,7 @@
 #include <SFML/Window.h>
 
 #include "map.h"
-//#include "player.h"
+#include "player.h"
 #include "object.h"
 #include "window.h"
 
@@ -23,7 +23,7 @@ typedef struct game {
     sfClock *clock;
     sfFont *font;
     map_t map;
-    //player_t player;
+    player_t player;
     object_t *duck;
     float speedx;
     double posx;

@@ -13,7 +13,7 @@
 #include <SFML/Window.h>
 #include "object.h"
 
-#define DISPLAY(obj, window, clock) obj->display(obj, window, clock)
+#define PARALLAX_DISPLAY(obj, window, clock) obj->display(obj, window, clock)
 #define SCALE(object, size) object->rescale(object, size)
 
 typedef struct parallax {
