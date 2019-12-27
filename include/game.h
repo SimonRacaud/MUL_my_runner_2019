@@ -27,6 +27,7 @@ typedef struct game {
     object_t *duck;
     float speedx;
     double posx;
+    int coin_counter;
 } game_t;
 
 #endif

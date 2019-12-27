@@ -21,8 +21,8 @@ void resize_window(window_t *w, sfEvent *event)
     map_reload(w);
 }
 
-void reload_render_window(window_t *w)
+void event_end_game(window_t *w, int exit_status)
 {
-    w->is_reload = 1;
+    w->exit_status = exit_status;
     w->evt.close(w);
 }

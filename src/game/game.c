@@ -25,7 +25,7 @@ static game_t *game_display(window_t *w)
     float timer = sfTime_asSeconds(sfClock_getElapsedTime(w->game.clock));
 
     sfRenderWindow_clear(w->window, sfBlack);
-    //w->game.posx = w->game.speedx * timer;
+    w->game.posx = w->game.speedx * timer;
     w->game.map.display(w);
     w->game.duck->display(w->game.duck, w->window, w->game.clock);
     w->game.player.display(w);

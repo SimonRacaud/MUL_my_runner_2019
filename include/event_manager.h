@@ -21,9 +21,10 @@ typedef struct event_manager {
     void (*key_release)(window_t *w, sfEvent *event);
     void (*resize)(window_t *w, sfEvent *event);
     void (*close)(window_t *w);
+    void (*end_game)(window_t *w, int exit_status);
 } event_manager_t;
 
 void resize_window(window_t *w, sfEvent *event);
-void reload_render_window(window_t *w);
+void event_end_game(window_t *w, int exit_status);
 
 #endif

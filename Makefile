@@ -30,6 +30,7 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)player/player.c				\
 		$(SRC_DIR)player/player_hitbox.c		\
 		$(SRC_DIR)player/player_config.c		\
+		$(SRC_DIR)player/player_collide.c		\
 		$(SRC_DIR)parallax/parallax.c			\
 		$(SRC_DIR)parallax/parallax_update.c	\
 
@@ -43,7 +44,6 @@ all:	$(NAME)
 
 $(NAME):	LIB $(OBJ)
 	gcc -o $(NAME) $(OBJ) -L./lib -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
-	make clean
 
 LIB:
 	make -C ./lib/my

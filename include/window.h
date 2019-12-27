@@ -22,7 +22,7 @@ typedef struct window {
     int width;
     int height;
     int is_fullscreen;
-    int is_reload;
+    int exit_status;
     game_t game;
     event_manager_t evt;
 } window_t;

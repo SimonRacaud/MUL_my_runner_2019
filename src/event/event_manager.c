@@ -27,6 +27,7 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
         close_window(w);
     else if (event->key.code == sfKeySpace) {
         my_putstr("KEY SPACE\n");
+        w->game.player.jump(&w->game.player);
     }
     if (event->key.code == sfKeyLeft)
         my_putstr("Key LEFT\n");
@@ -37,7 +38,7 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
     else if (event->key.code == sfKeyDown)
         my_putstr("Key DOWN\n");
     if (event->key.code == sfKeyF)
-        reload_render_window(w);
+        event_end_game(w, EXIT_RELOAD);
 }
 
 static void analyse_events(window_t *w, sfEvent *event)
@@ -59,4 +60,5 @@ void event_manager_create(event_manager_t *evt_manager)
     evt_manager->key_release = &manage_keyrelease;
     evt_manager->resize = &resize_window;
     evt_manager->close = &close_window;
+    evt_manager->end_game = &event_end_game;
 }

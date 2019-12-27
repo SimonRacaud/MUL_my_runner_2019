@@ -47,5 +47,6 @@ int load_standard_block(map_t *map);
 int load_map_from_buffer(map_t *map);
 
 object_type_e map_get_typeblock(map_t *map, window_t *w, sfVector2f *coord);
+sfVector2i map_get_block_coord(map_t *map, window_t *w, sfVector2f *coord);
 
 #endif

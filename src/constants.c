@@ -44,7 +44,9 @@ const float PLAYER_POSX = 300.0f;
 const double PLAYER_FPMS = 100;
 const int CODE_HIT_BLOCK = 1;
 const int CODE_NO_HIT_BLOCK = 2;
-const int CODE_COIN_BLOCK = 2;
+const int CODE_COIN_BLOCK = 3;
+const int CODE_TRAP = 4;
+const float PLAYER_JUMP_VELOCITY = -20;
 
 const int CHAR_SIZE = 0;
 

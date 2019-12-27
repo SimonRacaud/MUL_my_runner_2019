@@ -30,6 +30,7 @@ typedef struct window window_t;
 #define EXIT_ERROR 84
 #define EXIT_FAIL 24
 #define EXIT_WIN 42
+#define EXIT_RELOAD 99
 
 #define DESTROY(obj) (obj->destroy(obj))
 #define DISPLAY(obj, w) (obj->display(w))

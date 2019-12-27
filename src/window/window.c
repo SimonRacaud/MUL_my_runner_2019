@@ -52,7 +52,7 @@ window_t *window_create(window_t *w, char *path_map)
 
     w->destroy = window_destroy;
     w->display = window_display;
-    w->is_reload = 0;
+    w->exit_status = 0;
     w->is_fullscreen = 1;
     w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
     sfFullscreen | sfResize, NULL);

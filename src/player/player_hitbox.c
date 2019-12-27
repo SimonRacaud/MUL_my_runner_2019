@@ -11,13 +11,15 @@
 extern const int CODE_HIT_BLOCK;
 extern const int CODE_NO_HIT_BLOCK;
 extern const int CODE_COIN_BLOCK;
+extern const int CODE_TRAP;
 
-static int get_hitcode(map_t *map, window_t *w, sfVector2f *point)
+int get_hitcode(map_t *map, window_t *w, sfVector2f *point)
 {
     object_type_e ret;
 
+    if (point->y >= w->height)
+        return CODE_TRAP;
     ret = map->get_typeblock(map, w, point);
-
     if (ret == BLOCK_EMPTY || ret == BLOCK_EMPTY_TXR) {
         return CODE_NO_HIT_BLOCK;
     } else if (ret == BLOCK_COIN) {
@@ -45,7 +47,7 @@ int player_check_hit_bottom(map_t *map, player_t *player, window_t *w)
 {
     sfVector2f point;
 
-    point.y = player->obj->pos.y + player->obj->size.y + 4;
+    point.y = player->obj->pos.y + player->obj->size.y + 10;
     point.x = player->obj->pos.x;
     if (get_hitcode(map, w, &point) == CODE_HIT_BLOCK)
         return 1;
@@ -60,15 +62,16 @@ int player_check_hit_front(map_t *map, player_t *player, window_t *w)
     sfVector2f point;
     int ret;
 
-    point.x = player->obj->pos.x + player->obj->size.x + 4;
-    point.y = player->obj->pos.y;
+    point.x = player->obj->pos.x + player->obj->size.x - 10;
+    point.y = player->obj->pos.y + 10;
     for (int i = 0; i < 3; i++) {
         ret = get_hitcode(map, w, &point);
-        if (ret == CODE_HIT_BLOCK)
+        if (ret == CODE_HIT_BLOCK) {
             return 1;
-        else if (ret == CODE_COIN_BLOCK)
+        } else if (ret == CODE_COIN_BLOCK) {
             return 2;
-        point.y += map->block_size;
+        }
+        point.y += map->block_size - 10;
     }
     return 0;
 }
