@@ -22,10 +22,13 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)object/object_management.c	\
 		$(SRC_DIR)map/map.c						\
 		$(SRC_DIR)map/map_display.c				\
+		$(SRC_DIR)map/map_get_typeblock_coord.c	\
 		$(SRC_DIR)map/file_map.c				\
 		$(SRC_DIR)map/file_map_check_map.c		\
 		$(SRC_DIR)map/file_map_create_object_matrix.c 	\
+		$(SRC_DIR)map/file_map_load_standard_block.c 	\
 		$(SRC_DIR)player/player.c				\
+		$(SRC_DIR)player/player_hitbox.c		\
 		$(SRC_DIR)player/player_config.c		\
 		$(SRC_DIR)parallax/parallax.c			\
 		$(SRC_DIR)parallax/parallax_update.c	\

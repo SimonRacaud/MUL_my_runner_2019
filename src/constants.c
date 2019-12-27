@@ -20,8 +20,8 @@ const char *PATH_CLOUD = "asset/sprite/clouds.png";
 const char *PATH_BG = "asset/sprite/background.png";
 
 const int BLOCK_SIZE = 40;
-const int NB_TYPE_CHAR = 10;
-const int NB_TYPE_BLOCK = 8;
+const int NB_TYPE_CHAR = 9;
+const int NB_TYPE_BLOCK = 7;
 const char *PATH_BLOCK_TEXTR = "asset/sprite/block_basic.png";
 const int BLOCK_TEXTR_SIZE = 100;
 const char MAP_BLOCK_CHAR[] =
@@ -39,10 +39,12 @@ const char MAP_BLOCK_CHAR[] =
 
 const char *PATH_PLAYER_SSHEET = "asset/sprite/player.png";
 const sfVector2i PLAYER_SPRITE_SIZE = (sfVector2i){200, 400};
+const int PLAYER_HEIGHT = BLOCK_SIZE * 2;
 const float PLAYER_POSX = 300.0f;
 const double PLAYER_FPMS = 100;
-const int PLAYER_HEIGHT = BLOCK_SIZE * 2;
-const int ID_EMPTY_BLOCK = 3;
+const int CODE_HIT_BLOCK = 1;
+const int CODE_NO_HIT_BLOCK = 2;
+const int CODE_COIN_BLOCK = 2;
 
 const int CHAR_SIZE = 0;
 

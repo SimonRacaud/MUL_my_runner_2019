@@ -19,9 +19,16 @@ enum object_type {
     IMG,
     PLAYER,
     ENEMY,
-    COIN,
-    BLOCK
+    BLOCK_ROCK,
+    BLOCK_GROUND,
+    BLOCK_PLATFORM,
+    BLOCK_EMPTY,
+    BLOCK_EMPTY_TXR,
+    BLOCK_TRAP,
+    BLOCK_COIN
 };
+
+typedef enum object_type object_type_e;
 
 typedef struct object {
     void (*destroy)(struct object *object);
@@ -40,6 +47,7 @@ typedef struct object {
     sfSprite *sprite;
     sfVector2f pos;
     sfVector2f speed;
+    sfVector2f size;
     sfInt32 frame_per_ms;
     sfInt32 timer_frame;
 } object_t;

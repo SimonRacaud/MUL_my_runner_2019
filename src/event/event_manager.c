@@ -18,6 +18,7 @@ static void manage_mouse_click(window_t *w, sfEvent *event)
     sfMouseButtonEvent evt = event->mouseButton;
 
     my_printf("Mouse click: x %d y %d \n", evt.x, evt.y);
+    my_printf("Window size: x %d y %d \n", w->width, w->height);
 }
 
 static void manage_keyrelease(window_t *w, sfEvent *event)
@@ -36,7 +37,7 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
     else if (event->key.code == sfKeyDown)
         my_putstr("Key DOWN\n");
     if (event->key.code == sfKeyF)
-        reload_render_window(w, event);
+        reload_render_window(w);
 }
 
 static void analyse_events(window_t *w, sfEvent *event)

@@ -44,8 +44,9 @@ map_t *map_reload(window_t *w)
 
 map_t *map_create(window_t *w, char *file_name)
 {
-    w->game.map.destroy = map_destroy;
-    w->game.map.display = map_display;
+    w->game.map.destroy = &map_destroy;
+    w->game.map.display = &map_display;
+    w->game.map.get_typeblock = &map_get_typeblock;
     w->game.map.file_name = file_name;
     w->game.map.block_size = BLOCK_SIZE;
     w->game.map.buffer = NULL;

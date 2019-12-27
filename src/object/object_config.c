@@ -13,6 +13,7 @@ object_t *object_rescale(object_t *object, sfVector2f *new_size)
 
     scale.x = (float)new_size->x / object->rect.width;
     scale.y = (float)new_size->y / object->rect.height;
+    object->size = (*new_size);
     sfSprite_setScale(object->sprite, scale);
     return object;
 }

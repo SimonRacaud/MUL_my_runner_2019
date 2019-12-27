@@ -28,10 +28,13 @@ typedef struct window window_t;
 #include "player.h"
 
 #define EXIT_ERROR 84
+#define EXIT_FAIL 24
+#define EXIT_WIN 42
 
 #define DESTROY(obj) (obj->destroy(obj))
 #define DISPLAY(obj, w) (obj->display(w))
 #define DISPLAY_OBJ(obj, window, clock) (obj->display(obj, window, clock))
+#define ABS(x) (x < 0) ? (-x) : (x)
 
 int run(char *path_map);
 

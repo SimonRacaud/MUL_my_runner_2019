@@ -9,38 +9,12 @@
 
 extern const int NB_TYPE_BLOCK;
 extern const int NB_TYPE_CHAR;
-extern const char *PATH_BLOCK_TEXTR;
-extern const int BLOCK_TEXTR_SIZE;
 extern const char MAP_BLOCK_CHAR[];
-
-int load_type_block(map_t *map)
-{
-    sfVector2i size_block = {BLOCK_TEXTR_SIZE, BLOCK_TEXTR_SIZE};
-    sfVector2f null_vec = {0, 0};
-    float block_scale = (float)map->block_size / BLOCK_TEXTR_SIZE;
-    sfVector2f scale = {block_scale, block_scale};
-
-    if (!(map->type_block = malloc(sizeof(object_t *) * NB_TYPE_BLOCK))) {
-        my_putstr_error("ERROR: malloc in load_type_block (file_map...c)\n");
-        return EXIT_ERROR;
-    }
-    for (int i = 0; i < NB_TYPE_BLOCK; i++) {
-        map->type_block[i] = object_create(PATH_BLOCK_TEXTR, &null_vec,
-        &size_block, NB_TYPE_BLOCK);
-        if (map->type_block[i] == NULL) {
-            my_putstr_error("ERROR: object create in load_type_block\n");
-            return EXIT_ERROR;
-        }
-        sfSprite_setScale(map->type_block[i]->sprite, scale);
-        map->type_block[i]->set_frame(map->type_block[i], i);
-    }
-    return EXIT_SUCCESS;
-}
 
 static object_t *get_standard_block(char c, object_t **type_block)
 {
     for (int i = 0; i < NB_TYPE_CHAR; i++) {
-        if (c == MAP_BLOCK_CHAR[i] && i >= NB_TYPE_BLOCK - 1) {
+        if (c == MAP_BLOCK_CHAR[i] && i >= NB_TYPE_BLOCK) {
             return type_block[6]; // DEBUG
         } else if (c == MAP_BLOCK_CHAR[i]) {
             return type_block[i];

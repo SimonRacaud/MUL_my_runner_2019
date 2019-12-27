@@ -41,7 +41,7 @@ int map_load_from_file(map_t *map)
         free(map->buffer);
         return EXIT_ERROR;
     }
-    if (load_type_block(map) == EXIT_ERROR) {
+    if (load_standard_block(map) == EXIT_ERROR) {
         free(map->buffer);
         return EXIT_ERROR;
     } else if (load_map_from_buffer(map) == EXIT_ERROR) {

@@ -64,6 +64,8 @@ sfVector2i *size)
     obj->timer_frame = 0;
     obj->frame_per_ms = 0;
     obj->clock = NULL;
+    obj->size.x = (float)size->x;
+    obj->size.y = (float)size->y;
 }
 
 object_t *object_create(const char *spritesheet_path, sfVector2f *pos,

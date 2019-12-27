@@ -24,6 +24,8 @@ typedef struct stat stat_t;
 typedef struct map {
     void (*destroy)(struct map *map);
     struct map *(*display)(window_t *w);
+    object_type_e (*get_typeblock)(struct map *map, window_t *w,
+    sfVector2f *coord);
     char *buffer;
     char *file_name;
     int width;
@@ -41,7 +43,9 @@ int map_show_map(window_t *w);
 int map_load_from_file(map_t *map);
 
 int check_map_buffer(map_t *map);
-int load_type_block(map_t *map);
+int load_standard_block(map_t *map);
 int load_map_from_buffer(map_t *map);
+
+object_type_e map_get_typeblock(map_t *map, window_t *w, sfVector2f *coord);
 
 #endif

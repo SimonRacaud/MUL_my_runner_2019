@@ -21,7 +21,7 @@ void resize_window(window_t *w, sfEvent *event)
     map_reload(w);
 }
 
-void reload_render_window(window_t *w, sfEvent *event)
+void reload_render_window(window_t *w)
 {
     w->is_reload = 1;
     w->evt.close(w);

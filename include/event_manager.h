@@ -24,6 +24,6 @@ typedef struct event_manager {
 } event_manager_t;
 
 void resize_window(window_t *w, sfEvent *event);
-void reload_render_window(window_t *w, sfEvent *event);
+void reload_render_window(window_t *w);
 
 #endif

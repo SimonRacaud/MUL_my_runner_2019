@@ -12,7 +12,7 @@ typedef struct player {
     void (*destroy)(struct player *player);
     struct player *(*display)(window_t *w);
     struct player *(*set_velocity)(struct player *player, float x, float y);
-    int (*check_collision)(struct player *player, map_t *map);
+    int (*check_collision)(struct player *player, map_t *map, window_t *w);
     object_t *obj;
     sfVector2f velocity;
 } player_t;
@@ -20,5 +20,8 @@ typedef struct player {
 player_t *player_set_velocity(player_t *player, float x, float y);
 float player_get_posy(map_t *map, window_t *w);
 
+int player_check_hit_front(map_t *map, player_t *player, window_t *w);
+int player_check_hit_bottom(map_t *map, player_t *player, window_t *w);
+int player_check_hit_top(map_t *map, player_t *player, window_t *w);
 
 #endif
