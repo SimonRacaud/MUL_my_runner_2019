@@ -23,26 +23,35 @@ static void player_destroy(player_t *player)
     DESTROY(player->obj);
 }
 
-static void player_move(player_t *player, map_t *map, window_t *w)
+static int player_move(player_t *player, map_t *map, window_t *w)
 {
+    int ret;
+
     if (player->velocity.y != 0) {
         player->obj->pos.y += player->velocity.y;
         if (player->velocity.y < PLAYER_MAX_VELOCITY)
             player->velocity.y += PLAYER_JUMP_GRAVITY;
-    } else if (player->velocity.y < PLAYER_MAX_VELOCITY) {
-        if (!player_check_hit_bottom(map, player, w))
-            player->velocity.y += PLAYER_JUMP_GRAVITY;
-        else
+    } else if (player->velocity.y == 0) {
+        ret = player_check_hit_bottom(map, player, w);
+        if (ret == 0)
+            player->velocity.y = (-PLAYER_JUMP_VELOCITY);
+        else if (ret == -1) {
+            return EXIT_FAIL;
+        }
+        if (player->obj->nb_frame == 0)
             player->obj->nb_frame = P_NB_SPR;
     }
     sfSprite_setPosition(player->obj->sprite, player->obj->pos);
+    return EXIT_SUCCESS;
 }
 
 static player_t *player_display(window_t *w)
 {
     int ret;
 
-    player_move(&w->game.player, &w->game.map, w);
+    ret = player_move(&w->game.player, &w->game.map, w);
+    if (ret == EXIT_FAIL)
+        w->evt.end_game(w, EXIT_FAIL);
     DISPLAY_OBJ(w->game.player.obj, w->window, w->game.clock);
     ret = player_check_collision(&w->game.player, &w->game.map, w);
     if (ret == EXIT_FAIL)

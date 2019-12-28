@@ -10,6 +10,10 @@
 extern const int NB_TYPE_BLOCK;
 extern const char *PATH_BLOCK_TEXTR;
 extern const int BLOCK_TEXTR_SIZE;
+extern const char *PATH_ENEMY_SHEET;
+extern const int ENEMY_NB_SPR;
+extern const int ENEMY_TXR_SIZE;
+extern const int ENEMY_FPMS;
 
 static void set_standardblock_type(object_t *block, int id_type)
 {
@@ -42,13 +46,34 @@ static int create_standard_block(map_t *map)
     return EXIT_SUCCESS;
 }
 
+static int create_enemy_block(map_t *map)
+{
+    sfVector2i size_block = {ENEMY_TXR_SIZE, ENEMY_TXR_SIZE};
+    sfVector2f null_vec = {0, 0};
+    float block_scale = (float)map->block_size / ENEMY_TXR_SIZE;
+    sfVector2f scale = {block_scale, block_scale};
+
+    map->type_block[NB_TYPE_BLOCK] = object_create(PATH_ENEMY_SHEET, &null_vec,
+    &size_block, ENEMY_NB_SPR);
+    if (map->type_block[NB_TYPE_BLOCK] == NULL) {
+        my_putstr_error("ERROR: object create in load_type_block\n");
+        return EXIT_ERROR;
+    }
+    sfSprite_setScale(map->type_block[NB_TYPE_BLOCK]->sprite, scale);
+    set_standardblock_type(map->type_block[NB_TYPE_BLOCK], NB_TYPE_BLOCK);
+    SET_FPS(map->type_block[NB_TYPE_BLOCK], ENEMY_FPMS);
+    return EXIT_SUCCESS;
+}
+
 int load_standard_block(map_t *map)
 {
-    if (!(map->type_block = malloc(sizeof(object_t *) * NB_TYPE_BLOCK))) {
+    if (!(map->type_block = malloc(sizeof(object_t *) * NB_TYPE_BLOCK + 1))) {
         my_putstr_error("ERROR: malloc in load_type_block (file_map...c)\n");
         return EXIT_ERROR;
     }
     if (create_standard_block(map) == EXIT_ERROR)
+        return EXIT_ERROR;
+    else if (create_enemy_block(map) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

@@ -15,7 +15,7 @@ static object_t *get_standard_block(char c, object_t **type_block)
 {
     for (int i = 0; i < NB_TYPE_CHAR; i++) {
         if (c == MAP_BLOCK_CHAR[i] && i >= NB_TYPE_BLOCK) {
-            return type_block[1]; // DEBUG
+            return type_block[NB_TYPE_BLOCK];
         } else if (c == MAP_BLOCK_CHAR[i]) {
             return type_block[i];
         }

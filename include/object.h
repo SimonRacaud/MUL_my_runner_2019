@@ -13,6 +13,7 @@
 #include <SFML/Window.h>
 
 #define GET_TIME(obj) sfClock_getElapsedTime(obj->clock)
+#define SET_FPS(obj, fpms) obj->set_fps(obj, fpms)
 
 enum object_type {
     DEFAULT,
