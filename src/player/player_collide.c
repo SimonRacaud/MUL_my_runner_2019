@@ -30,14 +30,15 @@ int player_check_collision(player_t *player, map_t *map, window_t *w)
     int ret;
 
     if (player->velocity.y > 0) {
-        if (player_check_hit_bottom(map, player, w)) {
+        ret = player_check_hit_bottom(map, player, w);
+        if (ret == 1) {
             player->velocity.y = 0;
-            printf("HIY BOX BOTTOM\n");
+        } else if (ret == -1) {
+            return EXIT_FAIL;
         }
     } else if (player->velocity.y < 0) {
         if (player_check_hit_top(map, player, w)) {
             player->velocity.y = -player->velocity.y;
-            printf("HIY BOX TOP\n");
         }
     }
     ret = player_check_hit_front(map, player, w);
