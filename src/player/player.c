@@ -47,6 +47,8 @@ static int player_move(player_t *player, map_t *map, window_t *w)
 
 static player_t *player_display(window_t *w)
 {
+    int player_pos_in_map = w->game.player.obj->pos.x + w->game.posx;
+    int player_block_pos = player_pos_in_map / w->game.map.block_size;
     int ret;
 
     ret = player_move(&w->game.player, &w->game.map, w);
@@ -56,6 +58,8 @@ static player_t *player_display(window_t *w)
     ret = player_check_collision(&w->game.player, &w->game.map, w);
     if (ret == EXIT_FAIL)
         w->evt.end_game(w, EXIT_FAIL);
+    else if (player_block_pos == w->game.map.width - 1)
+        w->evt.end_game(w, EXIT_WIN);
     return (&w->game.player);
 }
 

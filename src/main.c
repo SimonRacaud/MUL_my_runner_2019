@@ -13,7 +13,10 @@ int usage(int status)
     my_putstr("USAGE\n\t./my_runner map.txt\n\nOPTIONS\n");
     my_putstr("\t-i\tlaunch the game in infinity mode.\n");
     my_putstr("\t-h\tprint the usage and quit.\n");
-    my_putstr("USER INTERACTIONS\n\tSPACE_KEY\tjump.\n");
+    my_putstr("USER INTERACTIONS\n");
+    my_putstr("\tSPACE_KEY\tjump.\n");
+    my_putstr("\tESCAPE_KEY\tExit game.\n");
+    my_putstr("\t[F]\tChange fullscreen mode.\n");
     return status;
 }
 
