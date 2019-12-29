@@ -24,6 +24,5 @@ int create_elements(game_t *game)
 int destroy_element(game_t *game)
 {
     game->duck->destroy(game->duck);
-    //destroy player
     return EXIT_SUCCESS;
 }

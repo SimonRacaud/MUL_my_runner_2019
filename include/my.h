@@ -9,6 +9,7 @@
 #define MY_H_
 
 #include <stdarg.h>
+#include <math.h>
 
 #define POW(x, y) my_compute_power_rec(x, y)
 
@@ -17,6 +18,7 @@ int my_isneg(int nb);
 int my_put_nbr(long long int nb);
 int my_put_nbr_ul(unsigned long long int nb);
 int my_putnbr_base(long int nbr, char const *base);
+char *my_putnbr_base_str(int nbr, char const *base);
 void my_put_double(double nb, int nb_decimal);
 void my_swap(int *a, int *b);
 int my_putstr(char const *str);

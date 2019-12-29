@@ -28,6 +28,15 @@ typedef struct game {
     float speedx;
     double posx;
     int coin_counter;
+    sfText *score;
+    sfText *coins;
+    char txt_score[13];
+    char txt_coins[12];
 } game_t;
+
+int game_create_panel(game_t *game);
+void game_destroy_panel(game_t *game);
+void game_show_panel(window_t *w);
+void game_update_panel(window_t *w);
 
 #endif

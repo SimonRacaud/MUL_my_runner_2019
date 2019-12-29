@@ -15,6 +15,7 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)event/event_manager.c					\
 		$(SRC_DIR)event/event_manager_more_events.c		\
 		$(SRC_DIR)game/game.c							\
+		$(SRC_DIR)game/game_panel.c							\
 		$(SRC_DIR)game/game_create_destroy_elements.c 	\
 		$(SRC_DIR)window/window.c				\
 		$(SRC_DIR)object/object.c				\

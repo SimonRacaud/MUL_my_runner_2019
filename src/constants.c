@@ -10,7 +10,7 @@
 const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
-const double SPEEDX = 180.0f;
+const double SPEEDX = 200.0f;
 
 const int PARALLAX_T_SX = 1920;
 const int PARALLAX_T_SY = 1080;
@@ -46,7 +46,7 @@ const int CODE_NO_HIT_BLOCK = 2;
 const int CODE_COIN_BLOCK = 3;
 const int CODE_TRAP = 4;
 const char *PATH_PLAY_SHEET = "asset/sprite/player.png";
-const sfVector2i PLAYER_SPRITE_SIZE = (sfVector2i){200, 400};
+const sfVector2i PLAYER_SPRITE_SIZE = {200, 400};
 const int P_NB_SPR = 3;
 const int PLAYER_HEIGHT = BLOCK_SIZE * 2;
 const float PLAYER_POSX = 240.0f;
@@ -55,10 +55,13 @@ const float PLAYER_JUMP_VELOCITY = -BLOCK_SIZE / 3;
 const float PLAYER_MAX_VELOCITY = -PLAYER_JUMP_VELOCITY;
 const float PLAYER_JUMP_GRAVITY = 0.8f;
 
-const int CHAR_SIZE = 0;
 
 const int W_WIDTH = 1920;
 const int W_HEIGHT = 1080;
 const int W_BPP = 32;
 const int FRAMERATE = 30;
 const char *TITLE_WINDOW = "My Runner 2019 - RACAUD Simon";
+
+const sfVector2f TXT_SCORE_POS = {50, 10};
+const sfVector2f TXT_COIN_POS = {50, 70};
+const int PANEL_CHAR_SIZE = 40;
