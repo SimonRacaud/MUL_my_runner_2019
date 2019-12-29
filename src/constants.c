@@ -55,7 +55,6 @@ const float PLAYER_JUMP_VELOCITY = -BLOCK_SIZE / 3;
 const float PLAYER_MAX_VELOCITY = -PLAYER_JUMP_VELOCITY;
 const float PLAYER_JUMP_GRAVITY = 0.8f;
 
-
 const int W_WIDTH = 1920;
 const int W_HEIGHT = 1080;
 const int W_BPP = 32;
@@ -65,3 +64,18 @@ const char *TITLE_WINDOW = "My Runner 2019 - RACAUD Simon";
 const sfVector2f TXT_SCORE_POS = {50, 10};
 const sfVector2f TXT_COIN_POS = {50, 70};
 const int PANEL_CHAR_SIZE = 40;
+
+const float SOUND_VOLUME = 80;
+const float SOUND_VOLUME_MUSIC = 50;
+
+#define SOUND_COUNT_1 6
+
+const char *SOUND_PATH[SOUND_COUNT_1] =
+{
+    "./asset/sound/maintheme.ogg",
+    "./asset/sound/maintheme.ogg",
+    "./asset/sound/jump.ogg",
+    "./asset/sound/dead.ogg",
+    "./asset/sound/coin.ogg",
+    "./asset/sound/win.ogg"
+};

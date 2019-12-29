@@ -14,6 +14,7 @@ static void coin_add(map_t *map, player_t *player, window_t *w)
     sfVector2i block_coord;
 
     w->game.coin_counter++;
+    w->soundm.play(&w->soundm, SOUND_COIN);
     coord.y = player->obj->pos.y + player->obj->size.y - 5;
     coord.x = player->obj->pos.x + player->obj->size.x;
     while (map_get_typeblock(map, w, &coord) != BLOCK_COIN) {

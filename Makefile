@@ -34,6 +34,7 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)player/player_collide.c		\
 		$(SRC_DIR)parallax/parallax.c			\
 		$(SRC_DIR)parallax/parallax_update.c	\
+		$(SRC_DIR)sound/sound_manager.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

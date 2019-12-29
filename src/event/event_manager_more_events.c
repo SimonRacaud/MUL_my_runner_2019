@@ -18,7 +18,9 @@ void resize_window(window_t *w, sfEvent *event)
 {
     w->width = (int)event->size.width;
     w->height = (int)event->size.height;
+    w->resize_window = sfFalse;
     map_reload(w);
+    w->game.player.obj->pos.y -= w->game.map.block_size * 2;
 }
 
 void event_end_game(window_t *w, int exit_status)

@@ -14,6 +14,7 @@
 
 #include "game.h"
 #include "event_manager.h"
+#include "sound_manager.h"
 
 typedef struct window {
     void (*destroy)(struct window *w);
@@ -22,9 +23,11 @@ typedef struct window {
     int width;
     int height;
     int is_fullscreen;
+    sfBool resize_window;
     int exit_status;
     game_t game;
     event_manager_t evt;
+    sound_manager_t soundm;
 } window_t;
 
 #endif

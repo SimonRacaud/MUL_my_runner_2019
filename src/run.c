@@ -9,6 +9,7 @@
 
 static int display(sfEvent *event, window_t *w)
 {
+    w->soundm.play(&w->soundm, SOUND_THEME);
     while (sfRenderWindow_isOpen(w->window)) {
         while (sfRenderWindow_pollEvent(w->window, event))
             w->evt.exec(w, event);
@@ -16,10 +17,16 @@ static int display(sfEvent *event, window_t *w)
     }
     if (w->exit_status == EXIT_RELOAD) {
         w->exit_status = 0;
+        w->resize_window = sfTrue;
         invert_fullscreen_state(w);
         display(event, w);
-    } else if (w->exit_status == 0)
+    } else if (w->exit_status == 0) {
         return EXIT_ERROR;
+    }
+    if (w->exit_status == EXIT_FAIL)
+        w->soundm.play(&w->soundm, SOUND_DIE);
+    else if (w->exit_status == EXIT_WIN)
+        w->soundm.play(&w->soundm, SOUND_WIN);
     return w->exit_status;
 }
 
@@ -41,7 +48,7 @@ int run(char *path_map)
         my_putstr("\nEXIT STATUS: PLAYER FAIL\n");
     } else {
         if (ret == EXIT_ERROR)
-            my_putstr("\nEXIT STATUS: ERROR/FORCE\n");
+            my_putstr("\nEXIT STATUS: ERROR or FORCED(escape)\n");
     }
     return EXIT_SUCCESS;
 }

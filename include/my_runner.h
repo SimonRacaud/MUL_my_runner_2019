@@ -26,6 +26,7 @@ typedef struct window window_t;
 #include "object.h"
 #include "parallax.h"
 #include "player.h"
+#include "sound_manager.h"
 
 #define EXIT_ERROR 84
 #define EXIT_FAIL 24
@@ -56,5 +57,7 @@ map_t *map_create(window_t *w, char *file_name);
 map_t *map_reload(window_t *w);
 
 player_t *player_create(window_t *w);
+
+sound_manager_t *sound_manager_create(sound_manager_t *sm);
 
 #endif

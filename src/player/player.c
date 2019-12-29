@@ -58,16 +58,19 @@ static player_t *player_display(window_t *w)
     ret = player_check_collision(&w->game.player, &w->game.map, w);
     if (ret == EXIT_FAIL)
         w->evt.end_game(w, EXIT_FAIL);
-    else if (player_block_pos == w->game.map.width - 1)
+    else if (player_block_pos == w->game.map.width - 2)
         w->evt.end_game(w, EXIT_WIN);
     return (&w->game.player);
 }
 
-static void player_jump(player_t *player)
+static void player_jump(window_t *w)
 {
+    player_t *player = &w->game.player;
+
     if (player->velocity.y == 0) {
         player->velocity.y = PLAYER_JUMP_VELOCITY;
         player->obj->nb_frame = 0;
+        w->soundm.play(&w->soundm, SOUND_JUMP);
     }
 }
 

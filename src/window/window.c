@@ -18,6 +18,7 @@ static void window_destroy(window_t *w)
 {
     sfRenderWindow_destroy(w->window);
     w->game.destroy(&w->game);
+    w->soundm.destroy(&w->soundm);
 }
 
 static window_t *window_display(window_t *w)
@@ -64,5 +65,7 @@ window_t *window_create(window_t *w, char *path_map)
     if (!game_create(w, path_map))
         return NULL;
     event_manager_create(&w->evt);
+    if (!sound_manager_create(&w->soundm))
+        return NULL;
     return w;
 }

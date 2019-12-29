@@ -13,7 +13,7 @@ typedef struct player {
     struct player *(*display)(window_t *w);
     struct player *(*set_velocity)(struct player *player, float x, float y);
     int (*check_collision)(struct player *player, map_t *map, window_t *w);
-    void (*jump)(struct player *player);
+    void (*jump)(window_t *w);
     object_t *obj;
     sfVector2f velocity;
 } player_t;
