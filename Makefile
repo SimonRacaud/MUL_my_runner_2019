@@ -45,7 +45,7 @@ CFLAGS	+= -Wall -Wextra -I./include
 all:	$(NAME)
 
 $(NAME):	LIB $(OBJ)
-	gcc -o $(NAME) $(OBJ) -L./lib -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
+	gcc -o $(NAME) $(OBJ) -L./lib -lm -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
 
 LIB:
 	make -C ./lib/my

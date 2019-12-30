@@ -15,7 +15,9 @@ static void show_row(window_t *w, int row, int max_row, sfVector2f *pos)
         map->map[row][y]->pos = *pos;
         sfSprite_setPosition(map->map[row][y]->sprite, map->map[row][y]->pos);
         pos->y -= map->block_size;
-        map->map[row][y]->display(map->map[row][y], w->window, w->game.clock);
+        if (map->map[row][y]->type != BLOCK_EMPTY) {
+            DISPLAY_OBJ(map->map[row][y], w->window, w->game.clock);
+        }
     }
 }
 

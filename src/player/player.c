@@ -34,7 +34,7 @@ static int player_move(player_t *player, map_t *map, window_t *w)
     } else if (player->velocity.y == 0) {
         ret = player_check_hit_bottom(map, player, w);
         if (ret == 0)
-            player->velocity.y = (-PLAYER_JUMP_VELOCITY);
+            player->velocity.y = (-PLAYER_JUMP_VELOCITY / 2);
         else if (ret == -1) {
             return EXIT_FAIL;
         }

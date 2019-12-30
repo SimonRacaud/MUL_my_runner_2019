@@ -12,7 +12,7 @@ extern const char *PATH_DUCKSHEET;
 
 int create_elements(game_t *game)
 {
-    game->duck = object_create(PATH_DUCKSHEET, &(sfVector2f){10, 10},
+    game->duck = object_create(PATH_DUCKSHEET, &(sfVector2f){10, 80},
     &(sfVector2i){110, 110}, 3);
     if (game->duck == NULL)
         return EXIT_ERROR;

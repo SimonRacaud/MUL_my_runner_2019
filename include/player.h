@@ -8,6 +8,8 @@
 #ifndef H_PLAYER
 #define H_PLAYER
 
+#include <math.h>
+
 typedef struct player {
     void (*destroy)(struct player *player);
     struct player *(*display)(window_t *w);
