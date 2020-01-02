@@ -26,7 +26,6 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
     if (event->key.code == sfKeyEscape)
         close_window(w);
     else if (event->key.code == sfKeySpace) {
-        my_putstr("KEY SPACE\n");
         if (!w->show_menu)
             w->game.player.jump(w);
         else
@@ -36,8 +35,10 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
         my_putstr("Key [P]AUSE\n");
         if (w->game.posx != 0)
             w->show_menu = !w->show_menu;
-    } else if (event->key.code == sfKeyF)
+    } else if (event->key.code == sfKeyF) {
         event_end_game(w, EXIT_RELOAD);
+        close_window(w);
+    }
 }
 
 static void analyse_events(window_t *w, sfEvent *event)

@@ -19,14 +19,11 @@ static int display(sfEvent *event, window_t *w)
         w->exit_status = 0;
         w->resize_window = sfTrue;
         invert_fullscreen_state(w);
+        sfMusic_setPlayingOffset(w->soundm.sounds[SOUND_THEME], (sfTime){0});
         display(event, w);
     } else if (w->exit_status == 0) {
         return EXIT_ERROR;
     }
-    if (w->exit_status == EXIT_FAIL)
-        w->soundm.play(&w->soundm, SOUND_DIE);
-    else if (w->exit_status == EXIT_WIN)
-        w->soundm.play(&w->soundm, SOUND_WIN);
     return w->exit_status;
 }
 

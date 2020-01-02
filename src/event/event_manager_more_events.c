@@ -26,8 +26,14 @@ void resize_window(window_t *w, sfEvent *event)
 void event_end_game(window_t *w, int exit_status)
 {
     w->exit_status = exit_status;
+    if (w->exit_status == EXIT_RELOAD)
+        return;
     w->show_menu = sfTrue;
     update_end_texts(w);
+    if (w->exit_status == EXIT_FAIL)
+        w->soundm.play(&w->soundm, SOUND_DIE);
+    else if (w->exit_status == EXIT_WIN)
+        w->soundm.play(&w->soundm, SOUND_WIN);
 }
 
 void event_space_menu(window_t *w)

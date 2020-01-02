@@ -74,6 +74,7 @@ static void player_jump(window_t *w)
     if (player->velocity.y == 0) {
         player->velocity.y = PLAYER_JUMP_VELOCITY;
         player->obj->nb_frame = 0;
+        player->obj->set_frame(player->obj, P_NB_SPR);
         w->soundm.play(&w->soundm, SOUND_JUMP);
     }
 }

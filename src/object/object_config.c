@@ -20,12 +20,10 @@ object_t *object_rescale(object_t *object, sfVector2f *new_size)
 
 object_t *object_set_frame(object_t *object, int idx_frame)
 {
-    if (idx_frame < object->nb_frame && idx_frame >= 0) {
-        object->rect.left = idx_frame * object->rect.width;
-        sfSprite_setTextureRect(object->sprite, object->rect);
-    } else {
+    object->rect.left = idx_frame * object->rect.width;
+    sfSprite_setTextureRect(object->sprite, object->rect);
+    if (idx_frame < 0)
         my_putstr_error("WARNING: object_set_frame: invalid idx of frame\n");
-    }
     return object;
 }
 
@@ -47,7 +45,7 @@ object_t *object_set_fps(object_t *object, double frame_per_ms)
 object_t *object_set_next_frame(object_t *object)
 {
     object->rect.left += object->rect.width;
-    if (object->rect.left == object->rect.width * object->nb_frame)
+    if (object->rect.left >= object->rect.width * object->nb_frame)
         object->rect.left = 0;
     return object;
 }
