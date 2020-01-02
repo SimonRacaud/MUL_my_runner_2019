@@ -26,5 +26,16 @@ void resize_window(window_t *w, sfEvent *event)
 void event_end_game(window_t *w, int exit_status)
 {
     w->exit_status = exit_status;
-    w->evt.close(w);
+    w->show_menu = sfTrue;
+    update_end_texts(w);
+}
+
+void event_space_menu(window_t *w)
+{
+    if (w->exit_status) {
+        w->evt.close(w);
+    } else {
+        w->show_menu = sfFalse;
+        sfMusic_setPlayingOffset(w->soundm.sounds[SOUND_THEME], (sfTime){0});
+    }
 }

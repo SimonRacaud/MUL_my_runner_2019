@@ -27,7 +27,10 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
         close_window(w);
     else if (event->key.code == sfKeySpace) {
         my_putstr("KEY SPACE\n");
-        w->game.player.jump(w);
+        if (!w->show_menu)
+            w->game.player.jump(w);
+        else
+            event_space_menu(w);
     }
     if (event->key.code == sfKeyLeft)
         my_putstr("Key LEFT\n");

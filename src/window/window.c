@@ -18,12 +18,16 @@ static void window_destroy(window_t *w)
 {
     sfRenderWindow_destroy(w->window);
     w->game.destroy(&w->game);
+    w->menu.destroy(&w->menu);
     w->soundm.destroy(&w->soundm);
 }
 
 static window_t *window_display(window_t *w)
 {
-    w->game.display(w);
+    if (w->show_menu == sfFalse)
+        w->game.display(w);
+    else
+        w->menu.display(w);
     sfRenderWindow_display(w->window);
     return w;
 }
@@ -47,25 +51,32 @@ void invert_fullscreen_state(window_t *w)
         sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);
 }
 
-window_t *window_create(window_t *w, char *path_map)
+static void window_create_init(window_t *w, int width, int height)
 {
-    sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
-
     w->destroy = window_destroy;
     w->display = window_display;
     w->exit_status = 0;
     w->is_fullscreen = 1;
+    w->show_menu = sfTrue;
+    w->resize_window = sfFalse;
+    w->width = width;
+    w->height = height;
+}
+
+window_t *window_create(window_t *w, char *path_map)
+{
+    sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
+
+    window_create_init(w, mode.width, mode.height);
     w->window = sfRenderWindow_create(mode, TITLE_WINDOW, sfClose |
     sfFullscreen | sfResize, NULL);
     if (!w->window)
         return NULL;
     sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);
-    w->width = mode.width;
-    w->height = mode.height;
-    if (!game_create(w, path_map))
+    if (!game_create(w, path_map) || !sound_manager_create(&w->soundm))
+        return NULL;
+    else if (!menu_create(w))
         return NULL;
     event_manager_create(&w->evt);
-    if (!sound_manager_create(&w->soundm))
-        return NULL;
     return w;
 }

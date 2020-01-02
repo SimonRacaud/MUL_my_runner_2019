@@ -79,3 +79,17 @@ const char *SOUND_PATH[SOUND_COUNT_1] =
     "./asset/sound/coin.ogg",
     "./asset/sound/win.ogg"
 };
+
+const char *MENU_TITLE = "My RUNNER 2019";
+const int MENU_TITLE_SIZE = 100;
+const sfVector2f MENU_TITLE_POS = {W_WIDTH / 2 - 250, W_HEIGHT * 0.2};
+const char *MENU_SUBTITLE = "Epitech - RACAUD Simon";
+const int MENU_SUBTITLE_SIZE = 30;
+const sfVector2f MENU_SUBTITLE_POS = {W_WIDTH / 2 - 250, W_HEIGHT * 0.3};
+const char *MENU_INPUTMSG = "Press [SPACE] to continue";
+const int MENU_INPUTMSG_SIZE = 30;
+const sfVector2f MENU_INPUTMSG_POS = {W_WIDTH / 2 - 150, W_HEIGHT * 0.9};
+const int MENU_ENDMSG_SIZE = 30;
+const sfVector2f MENU_STATUSMSG_POS = {W_WIDTH / 2 - 100, W_HEIGHT * 0.44};
+const sfVector2f MENU_SCOREMSG_POS = {W_WIDTH / 2 - 100, W_HEIGHT * 0.5};
+const sfVector2f MENU_COINMSG_POS = {W_WIDTH / 2 - 100, W_HEIGHT * 0.55};

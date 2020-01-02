@@ -37,7 +37,7 @@ int player_check_hit_top(map_t *map, player_t *player, window_t *w)
     sfVector2f point;
     int ret;
 
-    point.y = player->obj->pos.y - 4;
+    point.y = player->obj->pos.y - 8;
     point.x = player->obj->pos.x;
     ret = get_hitcode(map, w, &point);
     if (ret == CODE_HIT_BLOCK)

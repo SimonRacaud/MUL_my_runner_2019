@@ -35,6 +35,8 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)parallax/parallax.c			\
 		$(SRC_DIR)parallax/parallax_update.c	\
 		$(SRC_DIR)sound/sound_manager.c			\
+		$(SRC_DIR)menu/menu.c					\
+		$(SRC_DIR)menu/menu_create.c
 
 OBJ	=	$(SRC:.c=.o)
 
