@@ -25,12 +25,14 @@ int map_show_map(window_t *w)
 {
     int start_cols = (w->game.posx / w->game.map.block_size);
     sfVector2f pos = {0, w->height - w->game.map.block_size};
+    int map_width = w->game.map.width;
 
     pos.x = ((start_cols * w->game.map.block_size) - w->game.posx);
     for (int x = start_cols; x < start_cols + w->game.map.nb_disp_cols; x++) {
-        if (x >= w->game.map.width)
-            break;
-        show_row(w, x, w->game.map.nb_disp_rows, &pos);
+        if (x >= map_width)
+            show_row(w, (x - map_width), w->game.map.nb_disp_rows, &pos);
+        else
+            show_row(w, x, w->game.map.nb_disp_rows, &pos);
         pos.x += w->game.map.block_size;
         pos.y = (w->height - w->game.map.block_size);
     }

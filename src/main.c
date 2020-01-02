@@ -24,10 +24,13 @@ int main(int argc, char **argv)
 {
     if (!my_strcmp(argv[1], "-h")) {
         return usage(EXIT_SUCCESS);
-    } else if (argc >= 2) {
+    } else if (argc == 3) {
         if (!my_strcmp(argv[1], "-i"))
             return run(argv[2], sfTrue);
-        else
+        else if (!my_strcmp(argv[2], "-i"))
+            return run(argv[1], sfTrue);
+    } else {
+        if (argc == 2)
             return run(argv[1], sfFalse);
     }
     return usage(EXIT_SUCCESS);
