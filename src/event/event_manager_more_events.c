@@ -37,5 +37,7 @@ void event_space_menu(window_t *w)
     } else {
         w->show_menu = sfFalse;
         sfMusic_setPlayingOffset(w->soundm.sounds[SOUND_THEME], (sfTime){0});
+        sfClock_restart(w->game.clock);
+        sfClock_restart(w->game.clock_score);
     }
 }

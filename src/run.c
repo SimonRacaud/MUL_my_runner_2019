@@ -30,13 +30,13 @@ static int display(sfEvent *event, window_t *w)
     return w->exit_status;
 }
 
-int run(char *path_map)
+int run(char *path_map, sfBool infinite_mode)
 {
     sfEvent event;
     window_t w;
     int ret;
 
-    if (!window_create(&w, path_map)) {
+    if (!window_create(&w, path_map, infinite_mode)) {
         my_putstr_error("ERROR: create window or sub-objects\n");
         return EXIT_ERROR;
     }

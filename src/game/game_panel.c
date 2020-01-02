@@ -40,7 +40,8 @@ void game_destroy_panel(game_t *game)
 
 void game_update_panel(window_t *w)
 {
-    char *new_score = my_putnbr_base_str((w->game.posx / 10), "0123456789");
+    sfInt32 score = GET_MSECOND_CLOCK(w->game.clock_score) / 100;
+    char *new_score = my_putnbr_base_str((int)score, "0123456789");
     char *new_coins = my_putnbr_base_str(w->game.coin_counter, "0123456789");
 
     my_strncpy((w->game.txt_score + 7), new_score, 5);
@@ -48,7 +49,8 @@ void game_update_panel(window_t *w)
     free(new_score);
     free(new_coins);
     sfText_setString(w->game.score, w->game.txt_score);
-    sfText_setString(w->game.coins, w->game.txt_coins);
+    if (w->game.coin_counter != 0)
+        sfText_setString(w->game.coins, w->game.txt_coins);
 }
 
 void game_show_panel(window_t *w)

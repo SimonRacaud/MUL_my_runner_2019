@@ -38,13 +38,13 @@ typedef struct window window_t;
 #define DISPLAY_OBJ(obj, window, clock) (obj->display(obj, window, clock))
 #define ABS(x) (x < 0) ? (-x) : (x)
 
-int run(char *path_map);
+int run(char *path_map, sfBool infinite_mode);
 
-window_t *window_create(window_t *w, char *path_map);
+window_t *window_create(window_t *w, char *path_map, sfBool infinite_mode);
 void invert_fullscreen_state(window_t *w);
 
 void event_manager_create(event_manager_t *evt_manager);
-game_t *game_create(window_t *w, char *pathmap);
+game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode);
 int create_elements(game_t *game);
 int destroy_element(game_t *game);
 

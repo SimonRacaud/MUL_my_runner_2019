@@ -32,15 +32,11 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
         else
             event_space_menu(w);
     }
-    if (event->key.code == sfKeyLeft)
-        my_putstr("Key LEFT\n");
-    else if (event->key.code == sfKeyRight)
-        my_putstr("Key RIGHT\n");
-    if (event->key.code == sfKeyUp)
-        my_putstr("Key UP\n");
-    else if (event->key.code == sfKeyDown)
-        my_putstr("Key DOWN\n");
-    if (event->key.code == sfKeyF)
+    if (event->key.code == sfKeyP) {
+        my_putstr("Key [P]AUSE\n");
+        if (w->game.posx != 0)
+            w->show_menu = !w->show_menu;
+    } else if (event->key.code == sfKeyF)
         event_end_game(w, EXIT_RELOAD);
 }
 

@@ -17,6 +17,9 @@
 #include "object.h"
 #include "window.h"
 
+#define GET_TIME_CLOCK(clock) sfClock_getElapsedTime(clock)
+#define GET_MSECOND_CLOCK(clock) sfTime_asMilliseconds(GET_TIME_CLOCK(clock))
+
 typedef struct game {
     void (*destroy)(struct game *game);
     struct game *(*display)(window_t *w);
@@ -27,7 +30,9 @@ typedef struct game {
     object_t *duck;
     float speedx;
     double posx;
+    sfClock *clock_score;
     int coin_counter;
+    sfBool infinite_mode;
     sfText *score;
     sfText *coins;
     char txt_score[13];

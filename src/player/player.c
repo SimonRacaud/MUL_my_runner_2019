@@ -58,8 +58,12 @@ static player_t *player_display(window_t *w)
     ret = player_check_collision(&w->game.player, &w->game.map, w);
     if (ret == EXIT_FAIL)
         w->evt.end_game(w, EXIT_FAIL);
-    else if (player_block_pos == w->game.map.width - 2)
-        w->evt.end_game(w, EXIT_WIN);
+    else if (player_block_pos == w->game.map.width - 2) {
+        if (!w->game.infinite_mode)
+            w->evt.end_game(w, EXIT_WIN);
+        else
+            sfClock_restart(w->game.clock);
+    }
     return (&w->game.player);
 }
 

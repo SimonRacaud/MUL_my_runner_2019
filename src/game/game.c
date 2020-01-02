@@ -14,6 +14,7 @@ extern const double SPEEDX;
 static void game_destroy(game_t *game)
 {
     sfClock_destroy(game->clock);
+    sfClock_destroy(game->clock_score);
     sfFont_destroy(game->font);
     game->map.destroy(&game->map);
     game->player.destroy(&game->player);
@@ -36,7 +37,7 @@ static game_t *game_display(window_t *w)
     return (&w->game);
 }
 
-game_t *game_create(window_t *w, char *pathmap)
+game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode)
 {
     w->game.destroy = &game_destroy;
     w->game.display = &game_display;
@@ -44,7 +45,9 @@ game_t *game_create(window_t *w, char *pathmap)
     w->game.font = sfFont_createFromFile(PATH_FONT);
     w->game.speedx = SPEEDX;
     w->game.coin_counter = 0;
+    w->game.clock_score = sfClock_create();
     w->game.posx = 0;
+    w->game.infinite_mode = infinite_mode;
     if (!map_create(w, pathmap))
         return NULL;
     if (!w->game.font) {

@@ -63,7 +63,7 @@ static void window_create_init(window_t *w, int width, int height)
     w->height = height;
 }
 
-window_t *window_create(window_t *w, char *path_map)
+window_t *window_create(window_t *w, char *path_map, sfBool infinite_mode)
 {
     sfVideoMode mode = {W_WIDTH, W_HEIGHT, W_BPP};
 
@@ -73,9 +73,9 @@ window_t *window_create(window_t *w, char *path_map)
     if (!w->window)
         return NULL;
     sfRenderWindow_setFramerateLimit(w->window, FRAMERATE);
-    if (!game_create(w, path_map) || !sound_manager_create(&w->soundm))
+    if (!game_create(w, path_map, infinite_mode))
         return NULL;
-    else if (!menu_create(w))
+    else if (!menu_create(w) || !sound_manager_create(&w->soundm))
         return NULL;
     event_manager_create(&w->evt);
     return w;

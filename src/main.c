@@ -22,7 +22,13 @@ int usage(int status)
 
 int main(int argc, char **argv)
 {
-    if (argc == 2 && my_strcmp(argv[1], "-h"))
-        return run(argv[1]);
+    if (!my_strcmp(argv[1], "-h")) {
+        return usage(EXIT_SUCCESS);
+    } else if (argc >= 2) {
+        if (!my_strcmp(argv[1], "-i"))
+            return run(argv[2], sfTrue);
+        else
+            return run(argv[1], sfFalse);
+    }
     return usage(EXIT_SUCCESS);
 }
