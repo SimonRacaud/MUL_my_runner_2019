@@ -60,14 +60,16 @@ static int create_enemy_block(map_t *map)
         return EXIT_ERROR;
     }
     sfSprite_setScale(map->type_block[NB_TYPE_BLOCK]->sprite, scale);
-    set_standardblock_type(map->type_block[NB_TYPE_BLOCK], NB_TYPE_BLOCK);
+    map->type_block[NB_TYPE_BLOCK]->type = ENEMY;
     SET_FPS(map->type_block[NB_TYPE_BLOCK], ENEMY_FPMS);
     return EXIT_SUCCESS;
 }
 
 int load_standard_block(map_t *map)
 {
-    if (!(map->type_block = malloc(sizeof(object_t *) * NB_TYPE_BLOCK + 1))) {
+    int nb_standard_block = NB_TYPE_BLOCK + 1;
+
+    if (!(map->type_block = malloc(sizeof(object_t *) * nb_standard_block))) {
         my_putstr_error("ERROR: malloc in load_type_block (file_map...c)\n");
         return EXIT_ERROR;
     }

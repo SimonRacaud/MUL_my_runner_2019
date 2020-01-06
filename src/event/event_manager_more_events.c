@@ -41,9 +41,27 @@ void event_space_menu(window_t *w)
     if (w->exit_status) {
         w->evt.close(w);
     } else {
+        if (w->game.posx != 0) {
+            event_pause_menu(w);
+            return;
+        }
         w->show_menu = sfFalse;
         sfMusic_setPlayingOffset(w->soundm.sounds[SOUND_THEME], (sfTime){0});
         sfClock_restart(w->game.clock);
         sfClock_restart(w->game.clock_score);
     }
+}
+
+void event_pause_menu(window_t *w)
+{
+    static float time_start_pause = 0;
+    float now = GET_SECOND_CLOCK(w->game.clock);
+
+    if (w->game.posx == 0 && w->show_menu)
+        return;
+    w->show_menu = !w->show_menu;
+    if (w->show_menu)
+        time_start_pause = now;
+    else
+        w->game.sub_time += (now - time_start_pause);
 }

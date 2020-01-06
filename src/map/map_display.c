@@ -30,7 +30,7 @@ int map_show_map(window_t *w)
     pos.x = ((start_cols * w->game.map.block_size) - w->game.posx);
     for (int x = start_cols; x < start_cols + w->game.map.nb_disp_cols; x++) {
         if (x >= map_width)
-            show_row(w, (x - map_width), w->game.map.nb_disp_rows, &pos);
+            show_row(w, map_width - 1, w->game.map.nb_disp_rows, &pos);
         else
             show_row(w, x, w->game.map.nb_disp_rows, &pos);
         pos.x += w->game.map.block_size;

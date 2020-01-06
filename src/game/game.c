@@ -27,7 +27,7 @@ static game_t *game_display(window_t *w)
     float timer = sfTime_asSeconds(sfClock_getElapsedTime(w->game.clock));
 
     sfRenderWindow_clear(w->window, sfBlack);
-    w->game.posx = w->game.speedx * timer;
+    w->game.posx = w->game.speedx * (timer - w->game.sub_time);
     w->game.map.display(w);
     w->game.duck->display(w->game.duck, w->window, w->game.clock);
     w->game.player.display(w);
@@ -37,21 +37,30 @@ static game_t *game_display(window_t *w)
     return (&w->game);
 }
 
-game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode)
+static void game_create_init(window_t *w, sfBool infinite_mode)
 {
     w->game.destroy = &game_destroy;
     w->game.display = &game_display;
-    w->game.clock = sfClock_create();
-    w->game.font = sfFont_createFromFile(PATH_FONT);
     w->game.speedx = SPEEDX;
     w->game.coin_counter = 0;
-    w->game.clock_score = sfClock_create();
     w->game.posx = 0;
+    w->game.sub_time = 0;
     w->game.infinite_mode = infinite_mode;
+}
+
+game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode)
+{
+    game_create_init(w, infinite_mode);
+    w->game.clock = sfClock_create();
+    w->game.font = sfFont_createFromFile(PATH_FONT);
+    w->game.clock_score = sfClock_create();
     if (!map_create(w, pathmap))
         return NULL;
     if (!w->game.font) {
-        my_putstr_error("ERROR: load font\n");
+        my_putstr_error("ERROR: load font (in game_t)\n");
+        return NULL;
+    } else if (!w->game.clock || !w->game.clock_score) {
+        my_putstr_error("ERROR: game clock create\n");
         return NULL;
     }
     if (create_elements(&w->game) || !player_create(w)) {

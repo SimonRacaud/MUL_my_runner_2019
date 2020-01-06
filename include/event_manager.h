@@ -27,5 +27,6 @@ typedef struct event_manager {
 void resize_window(window_t *w, sfEvent *event);
 void event_end_game(window_t *w, int exit_status);
 void event_space_menu(window_t *w);
+void event_pause_menu(window_t *w);
 
 #endif

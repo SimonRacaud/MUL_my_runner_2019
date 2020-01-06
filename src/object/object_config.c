@@ -34,7 +34,7 @@ object_t *object_set_speed(object_t *object, double speedx, double speedy)
     return object;
 }
 
-object_t *object_set_fps(object_t *object, double frame_per_ms)
+object_t *object_set_fps(object_t *object, sfInt32 frame_per_ms)
 {
     object->frame_per_ms = frame_per_ms;
     if (object->clock == NULL)

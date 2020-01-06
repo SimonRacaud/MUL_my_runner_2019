@@ -33,8 +33,7 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
     }
     if (event->key.code == sfKeyP) {
         my_putstr("Key [P]AUSE\n");
-        if (w->game.posx != 0)
-            w->show_menu = !w->show_menu;
+        event_pause_menu(w);
     } else if (event->key.code == sfKeyF) {
         event_end_game(w, EXIT_RELOAD);
         close_window(w);

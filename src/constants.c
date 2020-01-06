@@ -51,9 +51,9 @@ const int P_NB_SPR = 3;
 const int PLAYER_HEIGHT = BLOCK_SIZE * 2;
 const float PLAYER_POSX = 240.0f;
 const double PLAYER_FPMS = 100;
-const float PLAYER_JUMP_VELOCITY = -BLOCK_SIZE / 2.8;
+const float PLAYER_JUMP_VELOCITY = -BLOCK_SIZE / 2.6;
 const float PLAYER_MAX_VELOCITY = -PLAYER_JUMP_VELOCITY / 1.4;
-const float PLAYER_JUMP_GRAVITY = 0.9f;
+const float PLAYER_JUMP_GRAVITY = 1.1f;
 
 const int W_WIDTH = 1920;
 const int W_HEIGHT = 1080;

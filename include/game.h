@@ -19,6 +19,7 @@
 
 #define GET_TIME_CLOCK(clock) sfClock_getElapsedTime(clock)
 #define GET_MSECOND_CLOCK(clock) sfTime_asMilliseconds(GET_TIME_CLOCK(clock))
+#define GET_SECOND_CLOCK(clock) sfTime_asSeconds(GET_TIME_CLOCK(clock))
 
 typedef struct game {
     void (*destroy)(struct game *game);
@@ -30,6 +31,7 @@ typedef struct game {
     object_t *duck;
     float speedx;
     double posx;
+    float sub_time;
     sfClock *clock_score;
     int coin_counter;
     sfBool infinite_mode;

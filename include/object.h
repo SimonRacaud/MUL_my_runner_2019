@@ -39,7 +39,7 @@ typedef struct object {
     struct object *(*rescale)(struct object *object, sfVector2f *new_size);
     struct object *(*set_frame)(struct object *object, int idx_frame);
     struct object *(*set_speed)(struct object *object, double x, double y);
-    struct object *(*set_fps)(struct object *object, double frame_per_ms);
+    struct object *(*set_fps)(struct object *object, sfInt32 frame_per_ms);
     enum object_type type;
     sfClock *clock;
     sfIntRect rect;
@@ -59,6 +59,6 @@ object_t *object_rescale(object_t *object, sfVector2f *new_size);
 object_t *object_set_frame(object_t *object, int idx_frame);
 object_t *object_set_speed(object_t *object, double speedx, double speedy);
 object_t *object_set_next_frame(object_t *object);
-object_t *object_set_fps(object_t *object, double frame_per_ms);
+object_t *object_set_fps(object_t *object, sfInt32 frame_per_ms);
 
 #endif
