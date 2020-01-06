@@ -9,7 +9,6 @@
 
 static int display(sfEvent *event, window_t *w)
 {
-    w->soundm.play(&w->soundm, SOUND_THEME);
     while (sfRenderWindow_isOpen(w->window)) {
         while (sfRenderWindow_pollEvent(w->window, event))
             w->evt.exec(w, event);
@@ -17,9 +16,7 @@ static int display(sfEvent *event, window_t *w)
     }
     if (w->exit_status == EXIT_RELOAD) {
         w->exit_status = 0;
-        w->resize_window = sfTrue;
         invert_fullscreen_state(w);
-        sfMusic_setPlayingOffset(w->soundm.sounds[SOUND_THEME], (sfTime){0});
         display(event, w);
     } else if (w->exit_status == 0) {
         return EXIT_ERROR;
@@ -37,6 +34,7 @@ int run(char *path_map, sfBool infinite_mode)
         my_putstr_error("ERROR: create window or sub-objects\n");
         return EXIT_ERROR;
     }
+    w.soundm.play(&w.soundm, SOUND_THEME);
     ret = display(&event, &w);
     w.destroy(&w);
     if (ret == EXIT_WIN) {

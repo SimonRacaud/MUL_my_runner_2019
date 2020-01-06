@@ -56,7 +56,7 @@ static void window_create_init(window_t *w, int width, int height)
     w->destroy = window_destroy;
     w->display = window_display;
     w->exit_status = 0;
-    w->is_fullscreen = 1;
+    w->is_fullscreen = sfTrue;
     w->show_menu = sfTrue;
     w->resize_window = sfFalse;
     w->width = width;

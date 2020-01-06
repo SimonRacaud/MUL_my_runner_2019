@@ -49,7 +49,7 @@ static void analyse_events(window_t *w, sfEvent *event)
     if (event->type == sfEvtKeyReleased)
         manage_keyrelease(w, event);
     if (event->type == sfEvtResized && w->resize_window == sfTrue)
-        resize_window(w, event);
+        event_resize_window(w, event);
 }
 
 void event_manager_create(event_manager_t *evt_manager)
@@ -57,7 +57,7 @@ void event_manager_create(event_manager_t *evt_manager)
     evt_manager->exec = &analyse_events;
     evt_manager->mouse_click = &manage_mouse_click;
     evt_manager->key_release = &manage_keyrelease;
-    evt_manager->resize = &resize_window;
+    evt_manager->resize = &event_resize_window;
     evt_manager->close = &close_window;
     evt_manager->end_game = &event_end_game;
 }

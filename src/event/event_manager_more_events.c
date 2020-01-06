@@ -14,20 +14,21 @@ extern const int W_BPP;
 extern const int FRAMERATE;
 extern const char *TITLE_WINDOW;
 
-void resize_window(window_t *w, sfEvent *event)
+void event_resize_window(window_t *w, sfEvent *event)
 {
-    w->width = (int)event->size.width;
-    w->height = (int)event->size.height;
     w->resize_window = sfFalse;
+    w->width = (int)event->size.width;
     map_reload(w);
-    w->game.player.obj->pos.y -= w->game.map.block_size * 2;
+    w->game.player.obj->pos.y -= w->game.map.block_size;
 }
 
 void event_end_game(window_t *w, int exit_status)
 {
     w->exit_status = exit_status;
-    if (w->exit_status == EXIT_RELOAD)
+    if (w->exit_status == EXIT_RELOAD) {
+        w->resize_window = sfTrue;
         return;
+    }
     w->show_menu = sfTrue;
     update_end_texts(w);
     if (w->exit_status == EXIT_FAIL)

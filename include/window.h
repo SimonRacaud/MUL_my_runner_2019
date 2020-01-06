@@ -23,7 +23,7 @@ typedef struct window {
     sfRenderWindow *window;
     int width;
     int height;
-    int is_fullscreen;
+    sfBool is_fullscreen;
     sfBool resize_window;
     sfBool show_menu;
     int exit_status;
