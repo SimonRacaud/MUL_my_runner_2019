@@ -52,7 +52,7 @@ SRC	=	my_compute_power_rec.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I../../include
+CFLAGS	=	-Wall -Wextra -I../../include -g
 
 NAME	=	libmy.a
 

@@ -42,12 +42,12 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	my_runner
 
-CFLAGS	+= -Wall -Wextra -I./include
+CFLAGS	+= -Wall -Wextra -I./include -g
 
 all:	$(NAME)
 
 $(NAME):	LIB $(OBJ)
-	gcc -o $(NAME) $(OBJ) -L./lib -lm -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
+	gcc -o $(NAME) $(OBJ) -L./lib -g -lm -lmy -l csfml-graphics -l csfml-system -l csfml-window -l csfml-audio
 
 LIB:
 	make -C ./lib/my

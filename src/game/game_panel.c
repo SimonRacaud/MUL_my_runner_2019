@@ -29,6 +29,7 @@ int game_create_panel(game_t *game)
     sfText_setString(game->coins, game->txt_coins);
     sfText_setCharacterSize(game->score, PANEL_CHAR_SIZE);
     sfText_setCharacterSize(game->coins, PANEL_CHAR_SIZE);
+    game->coin_counter = 0;
     return EXIT_SUCCESS;
 }
 
@@ -40,12 +41,18 @@ void game_destroy_panel(game_t *game)
 
 void game_update_panel(window_t *w)
 {
-    sfInt32 score = GET_MSECOND_CLOCK(w->game.clock_score) / 100;
+    sfInt32 score = GET_MSECOND_CLOCK(w->game.clock_score) / 100 + 1;
     char *new_score = my_putnbr_base_str((int)score, "0123456789");
     char *new_coins = my_putnbr_base_str(w->game.coin_counter, "0123456789");
+    int len = my_strlen(new_score);
 
-    my_strncpy((w->game.txt_score + 7), new_score, 5);
-    my_strncpy((w->game.txt_coins + 6), new_coins, 5);
+    if (len > 5)
+        len = 5;
+    my_strncpy((w->game.txt_score + 7), new_score, len);
+    len = my_strlen(new_coins);
+    if (len > 5)
+        len = 5;
+    my_strncpy((w->game.txt_coins + 6), new_coins, len);
     free(new_score);
     free(new_coins);
     sfText_setString(w->game.score, w->game.txt_score);
