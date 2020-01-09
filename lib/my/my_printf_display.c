@@ -9,7 +9,7 @@
 #include "my_printf.h"
 #include <stdarg.h>
 
-static const int (*types[13])(arg_t *arg, va_list *ap) =
+static int (* const types[13])(arg_t *arg, va_list *ap) =
 {
     &disp_int,
     &disp_uint_x_x,
