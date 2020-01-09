@@ -52,7 +52,7 @@ static char *allocate_memory(int base, int *nbr)
         ret[len_ret + 1] = '\0';
     } else {
         ret = malloc(sizeof(char) * (len_ret + 1));
-        ret[0] = ' ';
+        ret[0] = '0';
         ret[len_ret] = '\0';
     }
     return (ret);
@@ -63,7 +63,5 @@ char *my_putnbr_base_str(int nbr, char const *base)
     int len_base = my_strlen(base);
     char *ret = allocate_memory(len_base, &nbr);
 
-    if (nbr == 0 || !ret)
-        return ret;
     return (base_conv(nbr, len_base, base, ret));
 }

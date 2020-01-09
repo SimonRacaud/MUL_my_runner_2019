@@ -49,6 +49,7 @@ void game_update_panel(window_t *w)
     if (len > 5)
         len = 5;
     my_strncpy((w->game.txt_score + 7), new_score, len);
+    w->game.txt_score[7 + len] = '\0';
     len = my_strlen(new_coins);
     if (len > 5)
         len = 5;
