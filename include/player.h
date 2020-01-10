@@ -21,7 +21,7 @@ typedef struct player {
 } player_t;
 
 int player_check_collision(player_t *player, map_t *map, window_t *w);
-void coin_add(map_t *map, player_t *player, window_t *w);
+void coin_add(map_t *map, player_t *player, window_t *w, sfBool is_malus);
 
 player_t *player_set_velocity(player_t *player, float x, float y);
 float player_get_posy(map_t *map, window_t *w);

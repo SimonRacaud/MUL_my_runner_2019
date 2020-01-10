@@ -26,7 +26,8 @@ enum object_type {
     BLOCK_EMPTY,
     BLOCK_EMPTY_TXR,
     BLOCK_TRAP,
-    BLOCK_COIN
+    BLOCK_COIN,
+    BLOCK_MALUS
 };
 
 typedef enum object_type object_type_e;

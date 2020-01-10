@@ -20,7 +20,10 @@ static int player_manage_hit_font(player_t *player, map_t *map, window_t *w)
     if (ret == 1) {
         return EXIT_FAIL;
     } else if (ret == 2) {
-        coin_add(map, player, w);
+        coin_add(map, player, w, sfFalse);
+    }
+    if (ret == 3) {
+        coin_add(map, player, w, sfTrue);
     }
     return EXIT_SUCCESS;
 }

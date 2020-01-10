@@ -27,8 +27,8 @@ const int ENEMY_FPMS = 100;
 const int ENEMY_TXR_SIZE = 200;
 const char *PATH_ENEMY_SHEET = "asset/sprite/enemy_idle.png";
 const int BLOCK_SIZE = 60;
-const int NB_TYPE_CHAR = 9;
-const int NB_TYPE_BLOCK = 7;
+const int NB_TYPE_CHAR = 10;
+const int NB_TYPE_BLOCK = 8;
 const char *PATH_BLOCK_TEXTR = "asset/sprite/block_basic.png";
 const int BLOCK_TEXTR_SIZE = 100;
 const char MAP_BLOCK_CHAR[] =
@@ -40,14 +40,16 @@ const char MAP_BLOCK_CHAR[] =
     '.',
     '*',
     '@',
+    '8',
     'E',
     '\n'
 };
-
 const int CODE_HIT_BLOCK = 1;
 const int CODE_NO_HIT_BLOCK = 2;
 const int CODE_COIN_BLOCK = 3;
 const int CODE_TRAP = 4;
+const int CODE_MALUS_BLOCK = 5;
+
 const int NB_PLAYER_SHEET = 4;
 const char *PATH_PLAY_SHEET[4] =
 {

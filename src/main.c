@@ -9,7 +9,21 @@
 
 extern const char *USAGE_MESSAGE;
 
-int usage(int status)
+static void usage_game_explain(void)
+{
+    my_putchar('\n');
+    my_putstr("|---------------------------------------------------------\n");
+    my_putstr("| This game is a runner/platformer game.\n|\n");
+    my_putstr("| The player loose if he touches an enemy(obstacle), if");
+    my_putstr(" he hits a map block (in the front)\n|  or if he falls in a");
+    my_putstr(" hole.\n|\n");
+    my_putstr("| The player can gets bonus/malus coins by hitting them.\n");
+    my_putstr("| (The bonus coins add a bonus score and \n| the malus ");
+    my_putstr("coins remove a part of the bonus score collected)\n");
+    my_putstr("|---------------------------------------------------------\n");
+}
+
+static int usage(int status)
 {
     my_putstr("\033[1m\033[34m");
     my_putstr("Finite runner created with CSFML.\n\n");
@@ -24,11 +38,7 @@ int usage(int status)
     my_putstr("\tESCAPE_KEY\tExit game.\n");
     my_putstr("\t[F]\t\tChange fullscreen mode. (enable/disable)\n");
     my_putstr("\t[P]\t\tPause the game. (enable/disable)\n");
-    my_putstr("\n| This game is a runner/platformer game.\n");
-    my_putstr("| The player loose if he touches an enemy(obstacle), if");
-    my_putstr(" he hits a map block (in the front)\n|  or if he falls in a");
-    my_putstr(" hole.\n| The player can gets bonus coin by hitting them.");
-    my_putstr(" (They give a bonus score)\n");
+    usage_game_explain();
     my_putstr("\033[0m");
     return status;
 }

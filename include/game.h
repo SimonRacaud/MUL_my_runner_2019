@@ -38,8 +38,8 @@ typedef struct game {
     sfBool infinite_mode;
     sfText *score;
     sfText *coins;
-    char txt_score[13];
-    char txt_coins[12];
+    char txt_score[14];
+    char txt_coins[13];
 } game_t;
 
 int game_create_panel(game_t *game);

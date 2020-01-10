@@ -17,8 +17,7 @@ static void manage_mouse_click(window_t *w, sfEvent *event)
 {
     sfMouseButtonEvent evt = event->mouseButton;
 
-    my_printf("Mouse click: x %d y %d \n", evt.x, evt.y);
-    my_printf("Window size: x %d y %d \n", w->width, w->height);
+    evt.x += evt.y + w->exit_status;
 }
 
 static void manage_keyrelease(window_t *w, sfEvent *event)
@@ -32,7 +31,6 @@ static void manage_keyrelease(window_t *w, sfEvent *event)
             event_space_menu(w);
     }
     if (event->key.code == sfKeyP) {
-        my_putstr("Key [P]AUSE\n");
         event_pause_menu(w);
     } else if (event->key.code == sfKeyF) {
         event_end_game(w, EXIT_RELOAD);
