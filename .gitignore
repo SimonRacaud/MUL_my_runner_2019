@@ -13,7 +13,6 @@
 
 # Linker output
 *.ilk
-*.map
 *.exp
 
 # Precompiled Headers
@@ -107,7 +106,6 @@ flycheck_*.el
 
 ### OTHERS
 NormEZ.rb
-tests/
 *.gcda
 *.gcno
 
