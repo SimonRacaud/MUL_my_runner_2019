@@ -34,8 +34,9 @@ int player_check_collision(player_t *player, map_t *map, window_t *w)
         if (ret == 1) {
             player->velocity.y = 0;
             set_player_on_block(player, map);
-        } else if (ret == -1)
+        } else if (ret == -1) {
             return EXIT_FAIL;
+        }
     } else if (player->velocity.y < 0) {
         ret = player_check_hit_top(map, player, w);
         if (ret == 1) {
