@@ -63,14 +63,26 @@ int argc, char **argv)
     return idx_map;
 }
 
+static int check_display_usage(int argc, char **argv)
+{
+    for (int i = 0; i < argc; i++) {
+        if (!my_strcmp(argv[i], "-h")) {
+            return usage(1);
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     sfBool infinite_mode = sfFalse;
     char *character_sprite = "0";
     int idx_map;
 
-    if (argc > 1 && !my_strcmp(argv[1], "-h")) {
-        return usage(EXIT_SUCCESS);
+    if (argc > 1) {
+        if (check_display_usage(argc, argv)) {
+            return EXIT_SUCCESS;
+        }
     }
     my_printf("\033[34m%s\033[0m", USAGE_MESSAGE);
     if (argc > 1) {
