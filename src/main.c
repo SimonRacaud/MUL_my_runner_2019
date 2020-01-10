@@ -31,8 +31,9 @@ int main(int argc, char **argv)
         else if (!my_strcmp(argv[2], "-i"))
             return run(argv[1], sfTrue);
     } else {
-        if (argc == 2)
+        if (argc == 2) {
             return run(argv[1], sfFalse);
+        }
     }
     return usage(EXIT_SUCCESS);
 }

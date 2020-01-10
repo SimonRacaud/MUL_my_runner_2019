@@ -68,9 +68,7 @@ const int PANEL_CHAR_SIZE = 40;
 const float SOUND_VOLUME = 80;
 const float SOUND_VOLUME_MUSIC = 50;
 
-#define SOUND_COUNT_1 6
-
-const char *SOUND_PATH[SOUND_COUNT_1] =
+const char *SOUND_PATH[] =
 {
     "./asset/sound/maintheme.ogg",
     "./asset/sound/maintheme.ogg",

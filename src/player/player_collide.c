@@ -40,8 +40,9 @@ int player_check_collision(player_t *player, map_t *map, window_t *w)
         ret = player_check_hit_top(map, player, w);
         if (ret == 1) {
             player->velocity.y = -player->velocity.y / 2;
-        } else if (ret == -1)
+        } else if (ret == -1) {
             return EXIT_FAIL;
+        }
     }
     return player_manage_hit_font(player, map, w);
 }
