@@ -7,6 +7,9 @@
 
 #include <SFML/Graphics.h>
 
+const char *USAGE_MESSAGE = "[Information] : Usages can be displayed \
+with the -h option.\n\n";
+
 const char *PATH_DUCKSHEET = "asset/sprite/duck_spritesheet.png";
 
 const char *PATH_FONT = "asset/font/BebasNeue-Regular.ttf";
@@ -45,7 +48,21 @@ const int CODE_HIT_BLOCK = 1;
 const int CODE_NO_HIT_BLOCK = 2;
 const int CODE_COIN_BLOCK = 3;
 const int CODE_TRAP = 4;
-const char *PATH_PLAY_SHEET = "asset/sprite/player.png";
+const int NB_PLAYER_SHEET = 4;
+const char *PATH_PLAY_SHEET[4] =
+{
+    "asset/sprite/player0.png",
+    "asset/sprite/player1.png",
+    "asset/sprite/player2.png",
+    "asset/sprite/player3.png"
+};
+const char *PLAYER_OPTION_SPRITE[4] =
+{
+    "0",
+    "1",
+    "2",
+    "3"
+};
 const sfVector2i PLAYER_SPRITE_SIZE = {200, 400};
 const int P_NB_SPR = 3;
 const int PLAYER_HEIGHT = BLOCK_SIZE * 2;

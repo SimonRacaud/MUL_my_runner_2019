@@ -24,6 +24,7 @@ static int display(sfEvent *event, window_t *w)
 
 static void display_exit_state(int ret, window_t *w)
 {
+    my_putstr("\033[1m\033[32m");
     my_printf("\n%s\nCoin: %d\n", w->game.txt_score, w->game.coin_counter);
     if (ret == EXIT_WIN) {
         my_putstr("\nEXIT STATUS: PLAYER WIN\n");
@@ -35,16 +36,16 @@ static void display_exit_state(int ret, window_t *w)
         else
             my_putstr("\nEXIT STATUS: EXIT SUCCESS\n");
     }
-    my_putchar('\n');
+    my_putstr("\033[0m\n");
 }
 
-int run(char *path_map, sfBool infinite_mode)
+int run(char *path_map, sfBool infinite_mode, const char *player_sprite)
 {
     sfEvent event;
     window_t w;
     int ret;
 
-    if (!window_create(&w, path_map, infinite_mode)) {
+    if (!window_create(&w, path_map, infinite_mode, player_sprite)) {
         my_putstr_error("ERROR: create window or sub-objects\n");
         return EXIT_ERROR;
     }

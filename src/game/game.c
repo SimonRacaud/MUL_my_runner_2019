@@ -33,7 +33,7 @@ static game_t *game_display(window_t *w)
     w->game.player.display(w);
     game_show_panel(w);
     if ((int)(timer * 10) % 2 == 0)
-        game_update_panel(w);
+        game_update_panel(w, &w->game);
     return (&w->game);
 }
 
@@ -45,10 +45,12 @@ static void game_create_init(window_t *w, sfBool infinite_mode)
     w->game.coin_counter = 0;
     w->game.posx = 0;
     w->game.sub_time = 0;
+    w->game.bonus_score = 0;
     w->game.infinite_mode = infinite_mode;
 }
 
-game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode)
+game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode,
+const char *player_sprite)
 {
     game_create_init(w, infinite_mode);
     w->game.clock = sfClock_create();
@@ -63,7 +65,7 @@ game_t *game_create(window_t *w, char *pathmap, sfBool infinite_mode)
         my_putstr_error("ERROR: game clock create\n");
         return NULL;
     }
-    if (create_elements(&w->game) || !player_create(w)) {
+    if (create_elements(&w->game) || !player_create(w, player_sprite)) {
         return NULL;
     } else if (game_create_panel(&w->game) == EXIT_ERROR)
         return NULL;

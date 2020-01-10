@@ -32,6 +32,7 @@ SRC	=	$(SRC_DIR)main.c						\
 		$(SRC_DIR)player/player_hitbox.c		\
 		$(SRC_DIR)player/player_config.c		\
 		$(SRC_DIR)player/player_collide.c		\
+		$(SRC_DIR)player/player_manage.c		\
 		$(SRC_DIR)player/player_coin.c			\
 		$(SRC_DIR)parallax/parallax.c			\
 		$(SRC_DIR)parallax/parallax_update.c	\

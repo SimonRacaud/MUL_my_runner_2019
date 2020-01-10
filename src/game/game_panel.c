@@ -39,9 +39,9 @@ void game_destroy_panel(game_t *game)
     sfText_destroy(game->coins);
 }
 
-void game_update_panel(window_t *w)
+void game_update_panel(window_t *w, game_t *game)
 {
-    sfInt32 score = GET_MSECOND_CLOCK(w->game.clock_score) / 100 + 1;
+    sfInt32 score = GET_MSEC(game->clock_score) / 100 + 1 + game->bonus_score;
     char *new_score = my_putnbr_base_str((int)score, "0123456789");
     char *new_coins = my_putnbr_base_str(w->game.coin_counter, "0123456789");
     int len = my_strlen(new_score);

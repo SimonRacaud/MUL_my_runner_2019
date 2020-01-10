@@ -31,4 +31,7 @@ int player_check_hit_front(map_t *map, player_t *player, window_t *w);
 int player_check_hit_bottom(map_t *map, player_t *player, window_t *w);
 int player_check_hit_top(map_t *map, player_t *player, window_t *w);
 
+void player_jump(window_t *w);
+int player_move(player_t *player, map_t *map, window_t *w);
+
 #endif

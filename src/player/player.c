@@ -8,41 +8,20 @@
 #include "my_runner.h"
 #include "player.h"
 
-extern const char *PATH_PLAY_SHEET;
 extern const float PLAYER_POSX;
 extern const int PLAYER_HEIGHT;
 extern const sfVector2i PLAYER_SPRITE_SIZE;
 extern const double PLAYER_FPMS;
 extern const float PLAYER_JUMP_VELOCITY;
 extern const float PLAYER_JUMP_GRAVITY;
-extern const float PLAYER_MAX_VELOCITY;
 extern const int P_NB_SPR;
+extern const char *PATH_PLAY_SHEET[];
+extern const int NB_PLAYER_SHEET;
+extern const char *PLAYER_OPTION_SPRITE[];
 
 static void player_destroy(player_t *player)
 {
     DESTROY(player->obj);
-}
-
-static int player_move(player_t *player, map_t *map, window_t *w)
-{
-    int ret;
-
-    if (player->velocity.y != 0) {
-        player->obj->pos.y += player->velocity.y;
-        if (player->velocity.y < PLAYER_MAX_VELOCITY)
-            player->velocity.y += PLAYER_JUMP_GRAVITY;
-    } else if (player->velocity.y == 0) {
-        ret = player_check_hit_bottom(map, player, w);
-        if (ret == 0)
-            player->velocity.y = (-PLAYER_JUMP_VELOCITY / 2);
-        else if (ret == -1) {
-            return EXIT_FAIL;
-        }
-        if (player->obj->nb_frame == 0)
-            player->obj->nb_frame = P_NB_SPR;
-    }
-    sfSprite_setPosition(player->obj->sprite, player->obj->pos);
-    return EXIT_SUCCESS;
 }
 
 static player_t *player_display(window_t *w)
@@ -67,25 +46,35 @@ static player_t *player_display(window_t *w)
     return (&w->game.player);
 }
 
-static void player_jump(window_t *w)
+static int player_create_object(player_t *player, sfVector2f *pos,
+const char *player_sprite)
 {
-    player_t *player = &w->game.player;
+    sfVector2i sprite_size = PLAYER_SPRITE_SIZE;
+    char *sprite_sheet = NULL;
 
-    if (player->velocity.y == 0) {
-        player->velocity.y = PLAYER_JUMP_VELOCITY;
-        player->obj->nb_frame = 0;
-        player->obj->set_frame(player->obj, P_NB_SPR);
-        w->soundm.play(&w->soundm, SOUND_JUMP);
+    for (int i = 0; i < NB_PLAYER_SHEET; i++) {
+        if (!my_strcmp(player_sprite, PLAYER_OPTION_SPRITE[i])) {
+            sprite_sheet = my_strdup(PATH_PLAY_SHEET[i]);
+        }
     }
+    if (!sprite_sheet) {
+        my_putstr_error("\nERROR: invalid player sprite id [option].\n");
+        my_putstr_error("\tThe default sprite has been applied.\n");
+        sprite_sheet = my_strdup(PATH_PLAY_SHEET[0]);
+    }
+    player->obj = object_create(sprite_sheet, pos, &sprite_size, P_NB_SPR);
+    free(sprite_sheet);
+    if (!player->obj)
+        return EXIT_ERROR;
+    return EXIT_SUCCESS;
 }
 
-player_t *player_create(window_t *w)
+player_t *player_create(window_t *w, const char *player_sprite)
 {
     player_t *player = &w->game.player;
     sfVector2f pos;
     int block_size = w->game.map.block_size;
     sfVector2f size = {block_size, PLAYER_HEIGHT};
-    sfVector2i sprite_size = PLAYER_SPRITE_SIZE;
 
     pos.x = (int)(PLAYER_POSX / block_size) * block_size;
     pos.y = player_get_posy(&w->game.map, w);
@@ -94,8 +83,7 @@ player_t *player_create(window_t *w)
     player->jump = &player_jump;
     player->set_velocity = &player_set_velocity;
     player->check_collision = &player_check_collision;
-    player->obj = object_create(PATH_PLAY_SHEET, &pos, &sprite_size, P_NB_SPR);
-    if (pos.y == -1 || !player->obj)
+    if (pos.y == -1 || player_create_object(player, &pos, player_sprite))
         return NULL;
     player->obj->rescale(player->obj, &size);
     player->obj->set_fps(player->obj, PLAYER_FPMS);

@@ -36,6 +36,7 @@ void coin_add(map_t *map, player_t *player, window_t *w)
         coordx -= map->block_size;
     }
     w->game.coin_counter++;
+    w->game.bonus_score = w->game.coin_counter * 10;
     w->soundm.play(&w->soundm, SOUND_COIN);
     if (block_coord.x != -1)
         map->map[block_coord.x][block_coord.y] = map->type_block[3];

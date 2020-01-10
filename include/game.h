@@ -18,7 +18,7 @@
 #include "window.h"
 
 #define GET_TIME_CLOCK(clock) sfClock_getElapsedTime(clock)
-#define GET_MSECOND_CLOCK(clock) sfTime_asMilliseconds(GET_TIME_CLOCK(clock))
+#define GET_MSEC(clock) sfTime_asMilliseconds(GET_TIME_CLOCK(clock))
 #define GET_SECOND_CLOCK(clock) sfTime_asSeconds(GET_TIME_CLOCK(clock))
 
 typedef struct game {
@@ -34,6 +34,7 @@ typedef struct game {
     float sub_time;
     sfClock *clock_score;
     int coin_counter;
+    int bonus_score;
     sfBool infinite_mode;
     sfText *score;
     sfText *coins;
@@ -44,6 +45,6 @@ typedef struct game {
 int game_create_panel(game_t *game);
 void game_destroy_panel(game_t *game);
 void game_show_panel(window_t *w);
-void game_update_panel(window_t *w);
+void game_update_panel(window_t *w, game_t *game);
 
 #endif
