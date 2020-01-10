@@ -18,8 +18,9 @@ int get_hitcode(map_t *map, window_t *w, sfVector2f *point)
 {
     object_type_e ret;
 
-    if (point->y >= w->height)
+    if (point->y >= w->height) {
         return CODE_TRAP;
+    }
     ret = map->get_typeblock(map, w, point);
     if (ret == BLOCK_MALUS) {
         return CODE_MALUS_BLOCK;

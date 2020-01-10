@@ -29,6 +29,14 @@ object_type_e map_get_typeblock(map_t *map, window_t *w, sfVector2f *coord)
     object_t *block;
 
     block_coord = map_get_block_coord(map, w, coord);
+    if (block_coord.x < 0 || block_coord.x > map->width) {
+        return 0;
+    } else if (block_coord.y < 0 || block_coord.y > map->height) {
+        return 0;
+    }
     block = map->map[block_coord.x][block_coord.y];
+    if (!block) {
+        return 0;
+    }
     return block->type;
 }
