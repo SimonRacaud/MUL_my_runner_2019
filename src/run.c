@@ -15,13 +15,27 @@ static int display(sfEvent *event, window_t *w)
         w->display(w);
     }
     if (w->exit_status == EXIT_RELOAD) {
-        w->exit_status = 0;
+        w->exit_status = EXIT_SUCCESS;
         invert_fullscreen_state(w);
         display(event, w);
-    } else if (w->exit_status == 0) {
-        return EXIT_ERROR;
     }
     return w->exit_status;
+}
+
+static void display_exit_state(int ret, window_t *w)
+{
+    my_printf("\n%s\nCoin: %d\n", w->game.txt_score, w->game.coin_counter);
+    if (ret == EXIT_WIN) {
+        my_putstr("\nEXIT STATUS: PLAYER WIN\n");
+    } else if (ret == EXIT_FAIL) {
+        my_putstr("\nEXIT STATUS: PLAYER FAIL\n");
+    } else {
+        if (ret == EXIT_ERROR)
+            my_putstr("\nEXIT STATUS: EXIT ERROR\n");
+        else
+            my_putstr("\nEXIT STATUS: EXIT SUCCESS\n");
+    }
+    my_putchar('\n');
 }
 
 int run(char *path_map, sfBool infinite_mode)
@@ -36,14 +50,9 @@ int run(char *path_map, sfBool infinite_mode)
     }
     w.soundm.play(&w.soundm, SOUND_THEME);
     ret = display(&event, &w);
+    display_exit_state(ret, &w);
     w.destroy(&w);
-    if (ret == EXIT_WIN) {
-        my_putstr("\nEXIT STATUS: PLAYER WIN\n");
-    } else if (ret == EXIT_FAIL) {
-        my_putstr("\nEXIT STATUS: PLAYER FAIL\n");
-    } else {
-        if (ret == EXIT_ERROR)
-            my_putstr("\nEXIT STATUS: ERROR or FORCED(escape)\n");
-    }
+    if (ret == EXIT_ERROR)
+        return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

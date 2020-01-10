@@ -58,7 +58,7 @@ void event_pause_menu(window_t *w)
     static float time_start_pause = 0;
     float now = GET_SECOND_CLOCK(w->game.clock);
 
-    if (w->game.posx == 0 && w->show_menu)
+    if (!w->game.posx || (w->show_menu && w->exit_status != 0))
         return;
     w->show_menu = !w->show_menu;
     if (w->show_menu)

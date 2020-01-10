@@ -30,7 +30,7 @@ static int create_standard_block(map_t *map)
     sfVector2i size_block = {BLOCK_TEXTR_SIZE, BLOCK_TEXTR_SIZE};
     sfVector2f null_vec = {0, 0};
     float block_scale = (float)map->block_size / BLOCK_TEXTR_SIZE;
-    sfVector2f scale = {block_scale, block_scale};
+    sfVector2f scale = {block_scale + 0.001, block_scale};
 
     for (int i = 0; i < NB_TYPE_BLOCK; i++) {
         map->type_block[i] = object_create(PATH_BLOCK_TEXTR, &null_vec,

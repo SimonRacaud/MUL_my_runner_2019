@@ -13,7 +13,7 @@ int layer_id)
 {
     layer[1]->pos.x = layer[0]->pos.x + parallax->size.x - 7;
     sfSprite_setPosition(layer[1]->sprite, layer[1]->pos);
-    if (layer[1]->pos.x <= 0) {
+    if (layer[1]->pos.x <= -7) {
         sfClock_restart(parallax->clock[layer_id]);
     }
 }
