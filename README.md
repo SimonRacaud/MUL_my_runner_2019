@@ -1,4 +1,6 @@
 # MUL_my_runner_2019
+First-year graphical project.
+
 Runner game written in CSFML
 
 ![usage](img/usagee.png)
