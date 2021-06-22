@@ -1,7 +1,7 @@
 # MUL_my_runner_2019
 Runner game written in CSFML
 
-![usage](img/usage.png)
+![usage](img/usagee.png)
 
 ![menu](img/menu.png)
 
