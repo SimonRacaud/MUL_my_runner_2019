@@ -31,7 +31,7 @@ static int usage(int status)
     my_putstr("\t-i\tLaunch the game in infinity mode.\n");
     my_putstr("\t-h\tPrint the usage and quit.\n");
     my_putstr("\t-p [0-3] Customize the character.\n");
-    my_putstr("\t\t[0] Marvin,\n\t\t[1] Nazi mode,\n\t\t[2] Cetelem mode,");
+    my_putstr("\t\t[0] Marvin,\n\t\t[1] N mode,\n\t\t[2] Cetelem mode,");
     my_putstr("\n\t\t[3] Pinky mode\n");
     my_putstr("\nUSER INTERACTIONS\n");
     my_putstr("\tSPACE_KEY\tJump.\n");
